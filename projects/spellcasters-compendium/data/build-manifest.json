@@ -1,0 +1,13 @@
+{
+  "builder": "build_static_story.py",
+  "pipeline": "source/analysis.py",
+  "pipeline_sha256": "86ffcd25437eabf5caaf9639e9b098000cabc6a7b1f41d1a2bea7a0d06f9a226",
+  "raw_sha256": {
+    "over_one_mil_chars.zip": "a0051fb437e770749495ccd07bddae13a24077fbfe01d5f5fb1b983243ba0949",
+    "cleaned_data_DnD_smaller.csv": "9f7cb5c689f21f012363a1853f0e1548745e11b2fceb2277907c231fce5dd694"
+  },
+  "large_population": 223284,
+  "small_population": 3056,
+  "visuals": 8,
+  "raw_records_exported": false
+}

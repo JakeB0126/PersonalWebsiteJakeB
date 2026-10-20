@@ -1,0 +1,8 @@
+public/
+.env
+.env.*
+.vercel/
+.DS_Store
+REVIEW.md
+**/REVIEW.md
+assets/resume/*.pdf

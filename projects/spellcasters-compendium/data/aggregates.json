@@ -1,0 +1,1761 @@
+{
+  "large": {
+    "raw_rows": 1204252,
+    "parsed_variants": 511318,
+    "exact_repeat_excess": 692934,
+    "distinct_ids": 511272,
+    "conflicting_ids_before_latest": 46,
+    "invalid_timestamp_variants": 0,
+    "missing_id_variants": 0,
+    "ids_without_valid_timestamp": 0,
+    "canonical_ids": 511267,
+    "modified_min": "2018-06-29 15:37:47+00:00",
+    "modified_max": "2022-11-16 19:25:54.010000+00:00",
+    "selected_ids": 223284,
+    "selected_multiclass": 11597,
+    "invalid_levels": 4
+  },
+  "unresolved_count": 5,
+  "small": {
+    "raw_rows": 7620,
+    "selected_rows": 3056,
+    "missing_lists": 1089,
+    "malformed_tokens": 880,
+    "other_level_tokens": 4082,
+    "duplicate_tokens_removed": 27,
+    "incidences": 15651,
+    "multiclass_rows_excluded": 459
+  },
+  "tables": {
+    "1": [
+      {
+        "Class": "Bard",
+        "count": 36829,
+        "denominator": 223284,
+        "share_pct": 16.494240518801167
+      },
+      {
+        "Class": "Cleric",
+        "count": 41219,
+        "denominator": 223284,
+        "share_pct": 18.460346464592178
+      },
+      {
+        "Class": "Druid",
+        "count": 31998,
+        "denominator": 223284,
+        "share_pct": 14.330628258182404
+      },
+      {
+        "Class": "Sorcerer",
+        "count": 34281,
+        "denominator": 223284,
+        "share_pct": 15.353092922018595
+      },
+      {
+        "Class": "Warlock",
+        "count": 37051,
+        "denominator": 223284,
+        "share_pct": 16.593665466401532
+      },
+      {
+        "Class": "Wizard",
+        "count": 41906,
+        "denominator": 223284,
+        "share_pct": 18.76802637000412
+      }
+    ],
+    "2": [
+      {
+        "Class": "Bard",
+        "Level": "1\u20135",
+        "count": 27911,
+        "denominator": 169161,
+        "share_pct": 16.499665998663996
+      },
+      {
+        "Class": "Bard",
+        "Level": "6\u201310",
+        "count": 5798,
+        "denominator": 32741,
+        "share_pct": 17.708683302281543
+      },
+      {
+        "Class": "Bard",
+        "Level": "11\u201315",
+        "count": 1702,
+        "denominator": 11073,
+        "share_pct": 15.370721575002257
+      },
+      {
+        "Class": "Bard",
+        "Level": "16\u201320",
+        "count": 1417,
+        "denominator": 10305,
+        "share_pct": 13.750606501698204
+      },
+      {
+        "Class": "Cleric",
+        "Level": "1\u20135",
+        "count": 30991,
+        "denominator": 169161,
+        "share_pct": 18.320416644498437
+      },
+      {
+        "Class": "Cleric",
+        "Level": "6\u201310",
+        "count": 6400,
+        "denominator": 32741,
+        "share_pct": 19.547356525457378
+      },
+      {
+        "Class": "Cleric",
+        "Level": "11\u201315",
+        "count": 2196,
+        "denominator": 11073,
+        "share_pct": 19.832023841777296
+      },
+      {
+        "Class": "Cleric",
+        "Level": "16\u201320",
+        "count": 1632,
+        "denominator": 10305,
+        "share_pct": 15.836972343522563
+      },
+      {
+        "Class": "Druid",
+        "Level": "1\u20135",
+        "count": 24436,
+        "denominator": 169161,
+        "share_pct": 14.445409994029356
+      },
+      {
+        "Class": "Druid",
+        "Level": "6\u201310",
+        "count": 4784,
+        "denominator": 32741,
+        "share_pct": 14.611649002779389
+      },
+      {
+        "Class": "Druid",
+        "Level": "11\u201315",
+        "count": 1515,
+        "denominator": 11073,
+        "share_pct": 13.681929016526686
+      },
+      {
+        "Class": "Druid",
+        "Level": "16\u201320",
+        "count": 1261,
+        "denominator": 10305,
+        "share_pct": 12.236778262979136
+      },
+      {
+        "Class": "Sorcerer",
+        "Level": "1\u20135",
+        "count": 26254,
+        "denominator": 169161,
+        "share_pct": 15.520125797317348
+      },
+      {
+        "Class": "Sorcerer",
+        "Level": "6\u201310",
+        "count": 4678,
+        "denominator": 32741,
+        "share_pct": 14.287895910326501
+      },
+      {
+        "Class": "Sorcerer",
+        "Level": "11\u201315",
+        "count": 1704,
+        "denominator": 11073,
+        "share_pct": 15.388783527499323
+      },
+      {
+        "Class": "Sorcerer",
+        "Level": "16\u201320",
+        "count": 1644,
+        "denominator": 10305,
+        "share_pct": 15.953420669577875
+      },
+      {
+        "Class": "Warlock",
+        "Level": "1\u20135",
+        "count": 28746,
+        "denominator": 169161,
+        "share_pct": 16.993278592583398
+      },
+      {
+        "Class": "Warlock",
+        "Level": "6\u201310",
+        "count": 4850,
+        "denominator": 32741,
+        "share_pct": 14.813231116948169
+      },
+      {
+        "Class": "Warlock",
+        "Level": "11\u201315",
+        "count": 1686,
+        "denominator": 11073,
+        "share_pct": 15.226225955025738
+      },
+      {
+        "Class": "Warlock",
+        "Level": "16\u201320",
+        "count": 1769,
+        "denominator": 10305,
+        "share_pct": 17.166424065987385
+      },
+      {
+        "Class": "Wizard",
+        "Level": "1\u20135",
+        "count": 30823,
+        "denominator": 169161,
+        "share_pct": 18.221102972907467
+      },
+      {
+        "Class": "Wizard",
+        "Level": "6\u201310",
+        "count": 6231,
+        "denominator": 32741,
+        "share_pct": 19.031184142207017
+      },
+      {
+        "Class": "Wizard",
+        "Level": "11\u201315",
+        "count": 2270,
+        "denominator": 11073,
+        "share_pct": 20.5003160841687
+      },
+      {
+        "Class": "Wizard",
+        "Level": "16\u201320",
+        "count": 2582,
+        "denominator": 10305,
+        "share_pct": 25.055798156234836
+      }
+    ],
+    "3": [
+      {
+        "Class": "Bard",
+        "Category": "Half-Elf",
+        "count": 8464,
+        "class_n": 36829,
+        "known_n": 36829,
+        "missing_n": 0,
+        "share_all_pct": 22.981889272041055,
+        "share_known_pct": 22.981889272041055,
+        "rank": 1
+      },
+      {
+        "Class": "Bard",
+        "Category": "Human",
+        "count": 6385,
+        "class_n": 36829,
+        "known_n": 36829,
+        "missing_n": 0,
+        "share_all_pct": 17.33688126204893,
+        "share_known_pct": 17.33688126204893,
+        "rank": 2
+      },
+      {
+        "Class": "Bard",
+        "Category": "Tiefling",
+        "count": 4338,
+        "class_n": 36829,
+        "known_n": 36829,
+        "missing_n": 0,
+        "share_all_pct": 11.778761302234653,
+        "share_known_pct": 11.778761302234653,
+        "rank": 3
+      },
+      {
+        "Class": "Cleric",
+        "Category": "Human",
+        "count": 10077,
+        "class_n": 41219,
+        "known_n": 41219,
+        "missing_n": 0,
+        "share_all_pct": 24.44746354836362,
+        "share_known_pct": 24.44746354836362,
+        "rank": 1
+      },
+      {
+        "Class": "Cleric",
+        "Category": "Dwarf",
+        "count": 9323,
+        "class_n": 41219,
+        "known_n": 41219,
+        "missing_n": 0,
+        "share_all_pct": 22.61821004876392,
+        "share_known_pct": 22.61821004876392,
+        "rank": 2
+      },
+      {
+        "Class": "Cleric",
+        "Category": "Elf",
+        "count": 4520,
+        "class_n": 41219,
+        "known_n": 41219,
+        "missing_n": 0,
+        "share_all_pct": 10.96581673500085,
+        "share_known_pct": 10.96581673500085,
+        "rank": 3
+      },
+      {
+        "Class": "Druid",
+        "Category": "Elf",
+        "count": 9640,
+        "class_n": 31998,
+        "known_n": 31998,
+        "missing_n": 0,
+        "share_all_pct": 30.126882930183136,
+        "share_known_pct": 30.126882930183136,
+        "rank": 1
+      },
+      {
+        "Class": "Druid",
+        "Category": "Human",
+        "count": 4398,
+        "class_n": 31998,
+        "known_n": 31998,
+        "missing_n": 0,
+        "share_all_pct": 13.74460903806488,
+        "share_known_pct": 13.74460903806488,
+        "rank": 2
+      },
+      {
+        "Class": "Druid",
+        "Category": "Half-Elf",
+        "count": 2866,
+        "class_n": 31998,
+        "known_n": 31998,
+        "missing_n": 0,
+        "share_all_pct": 8.956809800612538,
+        "share_known_pct": 8.956809800612538,
+        "rank": 3
+      },
+      {
+        "Class": "Sorcerer",
+        "Category": "Half-Elf",
+        "count": 5650,
+        "class_n": 34281,
+        "known_n": 34281,
+        "missing_n": 0,
+        "share_all_pct": 16.481432863685423,
+        "share_known_pct": 16.481432863685423,
+        "rank": 1
+      },
+      {
+        "Class": "Sorcerer",
+        "Category": "Human",
+        "count": 5563,
+        "class_n": 34281,
+        "known_n": 34281,
+        "missing_n": 0,
+        "share_all_pct": 16.227647968262303,
+        "share_known_pct": 16.227647968262303,
+        "rank": 2
+      },
+      {
+        "Class": "Sorcerer",
+        "Category": "Tiefling",
+        "count": 5269,
+        "class_n": 34281,
+        "known_n": 34281,
+        "missing_n": 0,
+        "share_all_pct": 15.370030045797964,
+        "share_known_pct": 15.370030045797964,
+        "rank": 3
+      },
+      {
+        "Class": "Warlock",
+        "Category": "Tiefling",
+        "count": 9998,
+        "class_n": 37051,
+        "known_n": 37051,
+        "missing_n": 0,
+        "share_all_pct": 26.98442687106961,
+        "share_known_pct": 26.98442687106961,
+        "rank": 1
+      },
+      {
+        "Class": "Warlock",
+        "Category": "Human",
+        "count": 6532,
+        "class_n": 37051,
+        "known_n": 37051,
+        "missing_n": 0,
+        "share_all_pct": 17.629753582899248,
+        "share_known_pct": 17.629753582899248,
+        "rank": 2
+      },
+      {
+        "Class": "Warlock",
+        "Category": "Half-Elf",
+        "count": 5827,
+        "class_n": 37051,
+        "known_n": 37051,
+        "missing_n": 0,
+        "share_all_pct": 15.726970931958652,
+        "share_known_pct": 15.726970931958652,
+        "rank": 3
+      },
+      {
+        "Class": "Wizard",
+        "Category": "Elf",
+        "count": 12038,
+        "class_n": 41906,
+        "known_n": 41906,
+        "missing_n": 0,
+        "share_all_pct": 28.726196726005824,
+        "share_known_pct": 28.726196726005824,
+        "rank": 1
+      },
+      {
+        "Class": "Wizard",
+        "Category": "Human",
+        "count": 10722,
+        "class_n": 41906,
+        "known_n": 41906,
+        "missing_n": 0,
+        "share_all_pct": 25.585834963966974,
+        "share_known_pct": 25.585834963966974,
+        "rank": 2
+      },
+      {
+        "Class": "Wizard",
+        "Category": "Gnome",
+        "count": 5674,
+        "class_n": 41906,
+        "known_n": 41906,
+        "missing_n": 0,
+        "share_all_pct": 13.539827232377226,
+        "share_known_pct": 13.539827232377226,
+        "rank": 3
+      }
+    ],
+    "4": [
+      {
+        "Class": "Bard",
+        "Category": "Entertainer",
+        "count": 5087,
+        "class_n": 36829,
+        "known_n": 25675,
+        "missing_n": 11154,
+        "share_all_pct": 13.812484726709929,
+        "share_known_pct": 19.813047711781888,
+        "rank": 1
+      },
+      {
+        "Class": "Bard",
+        "Category": "Folk Hero",
+        "count": 4766,
+        "class_n": 36829,
+        "known_n": 25675,
+        "missing_n": 11154,
+        "share_all_pct": 12.940888973363382,
+        "share_known_pct": 18.56280428432327,
+        "rank": 2
+      },
+      {
+        "Class": "Bard",
+        "Category": "Criminal / Spy",
+        "count": 4482,
+        "class_n": 36829,
+        "known_n": 25675,
+        "missing_n": 11154,
+        "share_all_pct": 12.169757528034973,
+        "share_known_pct": 17.456669912366117,
+        "rank": 3
+      },
+      {
+        "Class": "Cleric",
+        "Category": "Acolyte",
+        "count": 13793,
+        "class_n": 41219,
+        "known_n": 30221,
+        "missing_n": 10998,
+        "share_all_pct": 33.462723501297944,
+        "share_known_pct": 45.640448694616325,
+        "rank": 1
+      },
+      {
+        "Class": "Cleric",
+        "Category": "Sage",
+        "count": 3233,
+        "class_n": 41219,
+        "known_n": 30221,
+        "missing_n": 10998,
+        "share_all_pct": 7.843470244304811,
+        "share_known_pct": 10.697859104596143,
+        "rank": 2
+      },
+      {
+        "Class": "Cleric",
+        "Category": "Soldier",
+        "count": 2908,
+        "class_n": 41219,
+        "known_n": 30221,
+        "missing_n": 10998,
+        "share_all_pct": 7.054998908270457,
+        "share_known_pct": 9.62244796664571,
+        "rank": 3
+      },
+      {
+        "Class": "Druid",
+        "Category": "Sage",
+        "count": 7242,
+        "class_n": 31998,
+        "known_n": 22718,
+        "missing_n": 9280,
+        "share_all_pct": 22.632664541533845,
+        "share_known_pct": 31.877806144907122,
+        "rank": 1
+      },
+      {
+        "Class": "Druid",
+        "Category": "Folk Hero",
+        "count": 3554,
+        "class_n": 31998,
+        "known_n": 22718,
+        "missing_n": 9280,
+        "share_all_pct": 11.106944184011502,
+        "share_known_pct": 15.643982744959944,
+        "rank": 2
+      },
+      {
+        "Class": "Druid",
+        "Category": "Haunted One",
+        "count": 2233,
+        "class_n": 31998,
+        "known_n": 22718,
+        "missing_n": 9280,
+        "share_all_pct": 6.978561160072505,
+        "share_known_pct": 9.829210317809666,
+        "rank": 3
+      },
+      {
+        "Class": "Sorcerer",
+        "Category": "Sage",
+        "count": 7706,
+        "class_n": 34281,
+        "known_n": 24508,
+        "missing_n": 9773,
+        "share_all_pct": 22.478924185408825,
+        "share_known_pct": 31.442794189652357,
+        "rank": 1
+      },
+      {
+        "Class": "Sorcerer",
+        "Category": "Noble",
+        "count": 3327,
+        "class_n": 34281,
+        "known_n": 24508,
+        "missing_n": 9773,
+        "share_all_pct": 9.705084449111753,
+        "share_known_pct": 13.575159131712095,
+        "rank": 2
+      },
+      {
+        "Class": "Sorcerer",
+        "Category": "Haunted One",
+        "count": 2930,
+        "class_n": 34281,
+        "known_n": 24508,
+        "missing_n": 9773,
+        "share_all_pct": 8.547008547008547,
+        "share_known_pct": 11.955279908601273,
+        "rank": 3
+      },
+      {
+        "Class": "Warlock",
+        "Category": "Sage",
+        "count": 6654,
+        "class_n": 37051,
+        "known_n": 24924,
+        "missing_n": 12127,
+        "share_all_pct": 17.959029445898896,
+        "share_known_pct": 26.697159364467982,
+        "rank": 1
+      },
+      {
+        "Class": "Warlock",
+        "Category": "Haunted One",
+        "count": 4751,
+        "class_n": 37051,
+        "known_n": 24924,
+        "missing_n": 12127,
+        "share_all_pct": 12.82286577960109,
+        "share_known_pct": 19.06194832290162,
+        "rank": 2
+      },
+      {
+        "Class": "Warlock",
+        "Category": "Criminal / Spy",
+        "count": 3312,
+        "class_n": 37051,
+        "known_n": 24924,
+        "missing_n": 12127,
+        "share_all_pct": 8.939029985695393,
+        "share_known_pct": 13.288396726047184,
+        "rank": 3
+      },
+      {
+        "Class": "Wizard",
+        "Category": "Sage",
+        "count": 16748,
+        "class_n": 41906,
+        "known_n": 31774,
+        "missing_n": 10132,
+        "share_all_pct": 39.96563737889562,
+        "share_known_pct": 52.709762699062125,
+        "rank": 1
+      },
+      {
+        "Class": "Wizard",
+        "Category": "Noble",
+        "count": 3499,
+        "class_n": 41906,
+        "known_n": 31774,
+        "missing_n": 10132,
+        "share_all_pct": 8.34963966973703,
+        "share_known_pct": 11.012148297350034,
+        "rank": 2
+      },
+      {
+        "Class": "Wizard",
+        "Category": "Acolyte",
+        "count": 2170,
+        "class_n": 41906,
+        "known_n": 31774,
+        "missing_n": 10132,
+        "share_all_pct": 5.178256096978953,
+        "share_known_pct": 6.82948322527853,
+        "rank": 3
+      }
+    ],
+    "5": [
+      {
+        "Class": "Bard",
+        "Category": "College of Lore",
+        "count": 12107,
+        "class_n": 36829,
+        "known_n": 15511,
+        "missing_n": 21318,
+        "share_all_pct": 32.87355073447555,
+        "share_known_pct": 78.05428405647605,
+        "rank": 1
+      },
+      {
+        "Class": "Bard",
+        "Category": "College of Valor",
+        "count": 990,
+        "class_n": 36829,
+        "known_n": 15511,
+        "missing_n": 21318,
+        "share_all_pct": 2.688099052377203,
+        "share_known_pct": 6.382567210366837,
+        "rank": 2
+      },
+      {
+        "Class": "Bard",
+        "Category": "College of Glamour",
+        "count": 930,
+        "class_n": 36829,
+        "known_n": 15511,
+        "missing_n": 21318,
+        "share_all_pct": 2.525183958293736,
+        "share_known_pct": 5.995744955193088,
+        "rank": 3
+      },
+      {
+        "Class": "Cleric",
+        "Category": "Life Domain",
+        "count": 26423,
+        "class_n": 41219,
+        "known_n": 33784,
+        "missing_n": 7435,
+        "share_all_pct": 64.10393265241757,
+        "share_known_pct": 78.21157944589154,
+        "rank": 1
+      },
+      {
+        "Class": "Cleric",
+        "Category": "Tempest Domain",
+        "count": 1370,
+        "class_n": 41219,
+        "known_n": 33784,
+        "missing_n": 7435,
+        "share_all_pct": 3.323709939590966,
+        "share_known_pct": 4.0551740468861,
+        "rank": 2
+      },
+      {
+        "Class": "Cleric",
+        "Category": "War Domain",
+        "count": 1295,
+        "class_n": 41219,
+        "known_n": 33784,
+        "missing_n": 7435,
+        "share_all_pct": 3.14175501589073,
+        "share_known_pct": 3.833175467677007,
+        "rank": 3
+      },
+      {
+        "Class": "Druid",
+        "Category": "Circle of the Land",
+        "count": 9649,
+        "class_n": 31998,
+        "known_n": 14536,
+        "missing_n": 17462,
+        "share_all_pct": 30.15500968810551,
+        "share_known_pct": 66.3800220143093,
+        "rank": 1
+      },
+      {
+        "Class": "Druid",
+        "Category": "Circle of the Moon",
+        "count": 3322,
+        "class_n": 31998,
+        "known_n": 14536,
+        "missing_n": 17462,
+        "share_all_pct": 10.381898868679292,
+        "share_known_pct": 22.853604843148045,
+        "rank": 2
+      },
+      {
+        "Class": "Druid",
+        "Category": "Circle of the Shepherd",
+        "count": 625,
+        "class_n": 31998,
+        "known_n": 14536,
+        "missing_n": 17462,
+        "share_all_pct": 1.953247077942371,
+        "share_known_pct": 4.299669785360484,
+        "rank": 3
+      },
+      {
+        "Class": "Sorcerer",
+        "Category": "Draconic Bloodline",
+        "count": 23573,
+        "class_n": 34281,
+        "known_n": 28121,
+        "missing_n": 6160,
+        "share_all_pct": 68.76403838861177,
+        "share_known_pct": 83.82703317805199,
+        "rank": 1
+      },
+      {
+        "Class": "Sorcerer",
+        "Category": "Wild Magic",
+        "count": 1970,
+        "class_n": 34281,
+        "known_n": 28121,
+        "missing_n": 6160,
+        "share_all_pct": 5.746623494063767,
+        "share_known_pct": 7.005440773798941,
+        "rank": 2
+      },
+      {
+        "Class": "Sorcerer",
+        "Category": "Divine Soul",
+        "count": 829,
+        "class_n": 34281,
+        "known_n": 28121,
+        "missing_n": 6160,
+        "share_all_pct": 2.418249175928357,
+        "share_known_pct": 2.94797482308595,
+        "rank": 3
+      },
+      {
+        "Class": "Warlock",
+        "Category": "The Fiend",
+        "count": 24099,
+        "class_n": 37051,
+        "known_n": 30116,
+        "missing_n": 6935,
+        "share_all_pct": 65.04277887236512,
+        "share_known_pct": 80.02058706335502,
+        "rank": 1
+      },
+      {
+        "Class": "Warlock",
+        "Category": "The Hexblade",
+        "count": 1905,
+        "class_n": 37051,
+        "known_n": 30116,
+        "missing_n": 6935,
+        "share_all_pct": 5.141561631265013,
+        "share_known_pct": 6.325541240536592,
+        "rank": 2
+      },
+      {
+        "Class": "Warlock",
+        "Category": "The Great Old One",
+        "count": 1756,
+        "class_n": 37051,
+        "known_n": 30116,
+        "missing_n": 6935,
+        "share_all_pct": 4.739413241208065,
+        "share_known_pct": 5.830787621198034,
+        "rank": 3
+      },
+      {
+        "Class": "Wizard",
+        "Category": "School of Evocation",
+        "count": 11155,
+        "class_n": 41906,
+        "known_n": 17837,
+        "missing_n": 24069,
+        "share_all_pct": 26.619099890230515,
+        "share_known_pct": 62.538543477042104,
+        "rank": 1
+      },
+      {
+        "Class": "Wizard",
+        "Category": "School of Necromancy",
+        "count": 1051,
+        "class_n": 41906,
+        "known_n": 17837,
+        "missing_n": 24069,
+        "share_all_pct": 2.507994081993032,
+        "share_known_pct": 5.892246454000112,
+        "rank": 2
+      },
+      {
+        "Class": "Wizard",
+        "Category": "School of Divination",
+        "count": 994,
+        "class_n": 41906,
+        "known_n": 17837,
+        "missing_n": 24069,
+        "share_all_pct": 2.371975373454875,
+        "share_known_pct": 5.572685989796491,
+        "rank": 3
+      }
+    ],
+    "6": [
+      {
+        "Class": "Bard",
+        "Level": 0,
+        "Spell": "Vicious Mockery",
+        "count": 170,
+        "class_n": 495,
+        "list_n": 219,
+        "missing_list_n": 276,
+        "level_list_n": 211,
+        "share_all_pct": 34.343434343434346,
+        "share_level_list_pct": 80.56872037914692,
+        "rank": 1
+      },
+      {
+        "Class": "Bard",
+        "Level": 1,
+        "Spell": "Healing Word",
+        "count": 119,
+        "class_n": 495,
+        "list_n": 219,
+        "missing_list_n": 276,
+        "level_list_n": 216,
+        "share_all_pct": 24.04040404040404,
+        "share_level_list_pct": 55.092592592592595,
+        "rank": 1
+      },
+      {
+        "Class": "Bard",
+        "Level": 2,
+        "Spell": "Heat Metal",
+        "count": 44,
+        "class_n": 495,
+        "list_n": 219,
+        "missing_list_n": 276,
+        "level_list_n": 138,
+        "share_all_pct": 8.88888888888889,
+        "share_level_list_pct": 31.884057971014492,
+        "rank": 1
+      },
+      {
+        "Class": "Cleric",
+        "Level": 0,
+        "Spell": "Sacred Flame",
+        "count": 202,
+        "class_n": 697,
+        "list_n": 694,
+        "missing_list_n": 3,
+        "level_list_n": 362,
+        "share_all_pct": 28.98134863701578,
+        "share_level_list_pct": 55.80110497237569,
+        "rank": 1
+      },
+      {
+        "Class": "Cleric",
+        "Level": 1,
+        "Spell": "Cure Wounds",
+        "count": 322,
+        "class_n": 697,
+        "list_n": 694,
+        "missing_list_n": 3,
+        "level_list_n": 691,
+        "share_all_pct": 46.19799139167862,
+        "share_level_list_pct": 46.59913169319827,
+        "rank": 1
+      },
+      {
+        "Class": "Cleric",
+        "Level": 2,
+        "Spell": "Spiritual Weapon",
+        "count": 230,
+        "class_n": 697,
+        "list_n": 694,
+        "missing_list_n": 3,
+        "level_list_n": 429,
+        "share_all_pct": 32.998565279770446,
+        "share_level_list_pct": 53.613053613053616,
+        "rank": 1
+      },
+      {
+        "Class": "Druid",
+        "Level": 0,
+        "Spell": "Shillelagh",
+        "count": 76,
+        "class_n": 490,
+        "list_n": 261,
+        "missing_list_n": 229,
+        "level_list_n": 229,
+        "share_all_pct": 15.510204081632653,
+        "share_level_list_pct": 33.18777292576419,
+        "rank": 1
+      },
+      {
+        "Class": "Druid",
+        "Level": 1,
+        "Spell": "Cure Wounds",
+        "count": 116,
+        "class_n": 490,
+        "list_n": 261,
+        "missing_list_n": 229,
+        "level_list_n": 198,
+        "share_all_pct": 23.6734693877551,
+        "share_level_list_pct": 58.58585858585859,
+        "rank": 1
+      },
+      {
+        "Class": "Druid",
+        "Level": 2,
+        "Spell": "Moonbeam",
+        "count": 45,
+        "class_n": 490,
+        "list_n": 261,
+        "missing_list_n": 229,
+        "level_list_n": 147,
+        "share_all_pct": 9.183673469387756,
+        "share_level_list_pct": 30.612244897959183,
+        "rank": 1
+      },
+      {
+        "Class": "Sorcerer",
+        "Level": 0,
+        "Spell": "Fire Bolt",
+        "count": 121,
+        "class_n": 422,
+        "list_n": 267,
+        "missing_list_n": 155,
+        "level_list_n": 212,
+        "share_all_pct": 28.672985781990523,
+        "share_level_list_pct": 57.075471698113205,
+        "rank": 1
+      },
+      {
+        "Class": "Sorcerer",
+        "Level": 1,
+        "Spell": "Shield",
+        "count": 72,
+        "class_n": 422,
+        "list_n": 267,
+        "missing_list_n": 155,
+        "level_list_n": 248,
+        "share_all_pct": 17.061611374407583,
+        "share_level_list_pct": 29.032258064516128,
+        "rank": 1
+      },
+      {
+        "Class": "Sorcerer",
+        "Level": 2,
+        "Spell": "Scorching Ray",
+        "count": 39,
+        "class_n": 422,
+        "list_n": 267,
+        "missing_list_n": 155,
+        "level_list_n": 150,
+        "share_all_pct": 9.24170616113744,
+        "share_level_list_pct": 26.0,
+        "rank": 1
+      },
+      {
+        "Class": "Warlock",
+        "Level": 0,
+        "Spell": "Eldritch Blast",
+        "count": 180,
+        "class_n": 438,
+        "list_n": 252,
+        "missing_list_n": 186,
+        "level_list_n": 250,
+        "share_all_pct": 41.0958904109589,
+        "share_level_list_pct": 72.0,
+        "rank": 1
+      },
+      {
+        "Class": "Warlock",
+        "Level": 1,
+        "Spell": "Hex",
+        "count": 72,
+        "class_n": 438,
+        "list_n": 252,
+        "missing_list_n": 186,
+        "level_list_n": 200,
+        "share_all_pct": 16.438356164383563,
+        "share_level_list_pct": 36.0,
+        "rank": 1
+      },
+      {
+        "Class": "Warlock",
+        "Level": 2,
+        "Spell": "Misty Step",
+        "count": 43,
+        "class_n": 438,
+        "list_n": 252,
+        "missing_list_n": 186,
+        "level_list_n": 124,
+        "share_all_pct": 9.817351598173516,
+        "share_level_list_pct": 34.67741935483871,
+        "rank": 1
+      },
+      {
+        "Class": "Wizard",
+        "Level": 0,
+        "Spell": "Fire Bolt",
+        "count": 140,
+        "class_n": 514,
+        "list_n": 274,
+        "missing_list_n": 240,
+        "level_list_n": 245,
+        "share_all_pct": 27.237354085603112,
+        "share_level_list_pct": 57.142857142857146,
+        "rank": 1
+      },
+      {
+        "Class": "Wizard",
+        "Level": 1,
+        "Spell": "Magic Missile",
+        "count": 153,
+        "class_n": 514,
+        "list_n": 274,
+        "missing_list_n": 240,
+        "level_list_n": 243,
+        "share_all_pct": 29.766536964980546,
+        "share_level_list_pct": 62.96296296296296,
+        "rank": 1
+      },
+      {
+        "Class": "Wizard",
+        "Level": 2,
+        "Spell": "Misty Step",
+        "count": 55,
+        "class_n": 514,
+        "list_n": 274,
+        "missing_list_n": 240,
+        "level_list_n": 140,
+        "share_all_pct": 10.700389105058365,
+        "share_level_list_pct": 39.285714285714285,
+        "rank": 1
+      }
+    ],
+    "7": [
+      {
+        "Class": "Bard",
+        "Policy": "Including recorded zeros",
+        "class_n": 36829,
+        "n": 36781,
+        "mean": 596.3684394116527,
+        "median": 0.0,
+        "p25": 0.0,
+        "p75": 25.0,
+        "p95": 956.71,
+        "zero_n": 19052,
+        "negative_n": 0,
+        "missing_n": 0,
+        "at_or_above_cap_n": 48,
+        "positive_pct_of_valid": 48.20151708762676
+      },
+      {
+        "Class": "Bard",
+        "Policy": "Positive values only",
+        "class_n": 36829,
+        "n": 17729,
+        "mean": 1237.2399780021433,
+        "median": 30.0,
+        "p25": 15.0,
+        "p75": 200.0,
+        "p95": 2973.851999999998,
+        "zero_n": 19052,
+        "negative_n": 0,
+        "missing_n": 0,
+        "at_or_above_cap_n": 48,
+        "positive_pct_of_valid": 48.20151708762676
+      },
+      {
+        "Class": "Cleric",
+        "Policy": "Including recorded zeros",
+        "class_n": 41219,
+        "n": 41176,
+        "mean": 698.2766852049738,
+        "median": 0.0,
+        "p25": 0.0,
+        "p75": 25.0,
+        "p95": 1107.7675,
+        "zero_n": 22173,
+        "negative_n": 0,
+        "missing_n": 0,
+        "at_or_above_cap_n": 43,
+        "positive_pct_of_valid": 46.15067029337478
+      },
+      {
+        "Class": "Cleric",
+        "Policy": "Positive values only",
+        "class_n": 41219,
+        "n": 19003,
+        "mean": 1513.0369304846602,
+        "median": 30.0,
+        "p25": 15.0,
+        "p75": 209.63,
+        "p95": 4199.08699999998,
+        "zero_n": 22173,
+        "negative_n": 0,
+        "missing_n": 0,
+        "at_or_above_cap_n": 43,
+        "positive_pct_of_valid": 46.15067029337478
+      },
+      {
+        "Class": "Druid",
+        "Policy": "Including recorded zeros",
+        "class_n": 31998,
+        "n": 31953,
+        "mean": 606.7237642787845,
+        "median": 0.0,
+        "p25": 0.0,
+        "p75": 22.0,
+        "p95": 985.3999999999978,
+        "zero_n": 17081,
+        "negative_n": 0,
+        "missing_n": 0,
+        "at_or_above_cap_n": 45,
+        "positive_pct_of_valid": 46.54336056082371
+      },
+      {
+        "Class": "Druid",
+        "Policy": "Positive values only",
+        "class_n": 31998,
+        "n": 14872,
+        "mean": 1303.5667321140397,
+        "median": 26.0,
+        "p25": 10.0,
+        "p75": 165.925,
+        "p95": 3116.079999999962,
+        "zero_n": 17081,
+        "negative_n": 0,
+        "missing_n": 0,
+        "at_or_above_cap_n": 45,
+        "positive_pct_of_valid": 46.54336056082371
+      },
+      {
+        "Class": "Sorcerer",
+        "Policy": "Including recorded zeros",
+        "class_n": 34281,
+        "n": 34219,
+        "mean": 704.5034729243987,
+        "median": 0.0,
+        "p25": 0.0,
+        "p75": 25.0,
+        "p95": 1015.0,
+        "zero_n": 19374,
+        "negative_n": 0,
+        "missing_n": 0,
+        "at_or_above_cap_n": 62,
+        "positive_pct_of_valid": 43.382331453286184
+      },
+      {
+        "Class": "Sorcerer",
+        "Policy": "Positive values only",
+        "class_n": 34281,
+        "n": 14845,
+        "mean": 1623.9410131357358,
+        "median": 40.0,
+        "p25": 11.25,
+        "p75": 200.0,
+        "p95": 4385.744,
+        "zero_n": 19374,
+        "negative_n": 0,
+        "missing_n": 0,
+        "at_or_above_cap_n": 62,
+        "positive_pct_of_valid": 43.382331453286184
+      },
+      {
+        "Class": "Warlock",
+        "Policy": "Including recorded zeros",
+        "class_n": 37051,
+        "n": 36992,
+        "mean": 598.1013729995675,
+        "median": 0.0,
+        "p25": 0.0,
+        "p75": 15.0,
+        "p95": 705.0,
+        "zero_n": 23283,
+        "negative_n": 0,
+        "missing_n": 0,
+        "at_or_above_cap_n": 59,
+        "positive_pct_of_valid": 37.05936418685121
+      },
+      {
+        "Class": "Warlock",
+        "Policy": "Positive values only",
+        "class_n": 37051,
+        "n": 13709,
+        "mean": 1613.9007943686631,
+        "median": 40.0,
+        "p25": 15.0,
+        "p75": 185.0,
+        "p95": 3792.2919999999976,
+        "zero_n": 23283,
+        "negative_n": 0,
+        "missing_n": 0,
+        "at_or_above_cap_n": 59,
+        "positive_pct_of_valid": 37.05936418685121
+      },
+      {
+        "Class": "Wizard",
+        "Policy": "Including recorded zeros",
+        "class_n": 41906,
+        "n": 41807,
+        "mean": 812.2913320735762,
+        "median": 0.0,
+        "p25": 0.0,
+        "p75": 20.475,
+        "p95": 1000.0,
+        "zero_n": 22754,
+        "negative_n": 0,
+        "missing_n": 0,
+        "at_or_above_cap_n": 99,
+        "positive_pct_of_valid": 45.57370775229029
+      },
+      {
+        "Class": "Wizard",
+        "Policy": "Positive values only",
+        "class_n": 41906,
+        "n": 19053,
+        "mean": 1782.3683262478348,
+        "median": 25.0,
+        "p25": 10.0,
+        "p75": 160.0,
+        "p95": 4453.779999999977,
+        "zero_n": 22754,
+        "negative_n": 0,
+        "missing_n": 0,
+        "at_or_above_cap_n": 99,
+        "positive_pct_of_valid": 45.57370775229029
+      }
+    ],
+    "8": [
+      {
+        "Class": "Bard",
+        "Policy": "Including recorded zeros",
+        "class_n": 36829,
+        "n": 36826,
+        "mean": 267.0627545755716,
+        "median": 0.0,
+        "p25": 0.0,
+        "p75": 50.0,
+        "p95": 1546.0,
+        "zero_n": 22524,
+        "negative_n": 3,
+        "missing_n": 0,
+        "at_or_above_cap_n": 0,
+        "positive_pct_of_valid": 38.83669146798458
+      },
+      {
+        "Class": "Bard",
+        "Policy": "Positive values only",
+        "class_n": 36829,
+        "n": 14302,
+        "mean": 687.6557824080548,
+        "median": 129.0,
+        "p25": 25.0,
+        "p75": 710.0,
+        "p95": 3102.8499999999967,
+        "zero_n": 22524,
+        "negative_n": 3,
+        "missing_n": 0,
+        "at_or_above_cap_n": 0,
+        "positive_pct_of_valid": 38.83669146798458
+      },
+      {
+        "Class": "Cleric",
+        "Policy": "Including recorded zeros",
+        "class_n": 41219,
+        "n": 41216,
+        "mean": 249.4061286878882,
+        "median": 0.0,
+        "p25": 0.0,
+        "p75": 50.0,
+        "p95": 1391.0,
+        "zero_n": 24058,
+        "negative_n": 3,
+        "missing_n": 0,
+        "at_or_above_cap_n": 0,
+        "positive_pct_of_valid": 41.629464285714285
+      },
+      {
+        "Class": "Cleric",
+        "Policy": "Positive values only",
+        "class_n": 41219,
+        "n": 17158,
+        "mean": 599.1096281617904,
+        "median": 99.0,
+        "p25": 43.0,
+        "p75": 509.5,
+        "p95": 2785.1499999999996,
+        "zero_n": 24058,
+        "negative_n": 3,
+        "missing_n": 0,
+        "at_or_above_cap_n": 0,
+        "positive_pct_of_valid": 41.629464285714285
+      },
+      {
+        "Class": "Druid",
+        "Policy": "Including recorded zeros",
+        "class_n": 31998,
+        "n": 31995,
+        "mean": 256.9306454133458,
+        "median": 0.0,
+        "p25": 0.0,
+        "p75": 96.0,
+        "p95": 1441.2999999999993,
+        "zero_n": 19055,
+        "negative_n": 3,
+        "missing_n": 0,
+        "at_or_above_cap_n": 0,
+        "positive_pct_of_valid": 40.44381934677293
+      },
+      {
+        "Class": "Druid",
+        "Policy": "Positive values only",
+        "class_n": 31998,
+        "n": 12940,
+        "mean": 635.2778979907264,
+        "median": 129.0,
+        "p25": 43.0,
+        "p75": 591.0,
+        "p95": 2846.0499999999993,
+        "zero_n": 19055,
+        "negative_n": 3,
+        "missing_n": 0,
+        "at_or_above_cap_n": 0,
+        "positive_pct_of_valid": 40.44381934677293
+      },
+      {
+        "Class": "Sorcerer",
+        "Policy": "Including recorded zeros",
+        "class_n": 34281,
+        "n": 34277,
+        "mean": 233.24725034279547,
+        "median": 0.0,
+        "p25": 0.0,
+        "p75": 61.0,
+        "p95": 1345.0,
+        "zero_n": 21453,
+        "negative_n": 4,
+        "missing_n": 0,
+        "at_or_above_cap_n": 0,
+        "positive_pct_of_valid": 37.412842430784494
+      },
+      {
+        "Class": "Sorcerer",
+        "Policy": "Positive values only",
+        "class_n": 34281,
+        "n": 12824,
+        "mean": 623.4416718652526,
+        "median": 129.0,
+        "p25": 40.0,
+        "p75": 579.0,
+        "p95": 2966.0,
+        "zero_n": 21453,
+        "negative_n": 4,
+        "missing_n": 0,
+        "at_or_above_cap_n": 0,
+        "positive_pct_of_valid": 37.412842430784494
+      },
+      {
+        "Class": "Warlock",
+        "Policy": "Including recorded zeros",
+        "class_n": 37051,
+        "n": 37049,
+        "mean": 226.88107641231883,
+        "median": 0.0,
+        "p25": 0.0,
+        "p75": 32.0,
+        "p95": 1304.5999999999985,
+        "zero_n": 25315,
+        "negative_n": 2,
+        "missing_n": 0,
+        "at_or_above_cap_n": 0,
+        "positive_pct_of_valid": 31.671570082863234
+      },
+      {
+        "Class": "Warlock",
+        "Policy": "Positive values only",
+        "class_n": 37051,
+        "n": 11734,
+        "mean": 716.355633202659,
+        "median": 129.0,
+        "p25": 40.0,
+        "p75": 672.0,
+        "p95": 3274.3500000000004,
+        "zero_n": 25315,
+        "negative_n": 2,
+        "missing_n": 0,
+        "at_or_above_cap_n": 0,
+        "positive_pct_of_valid": 31.671570082863234
+      },
+      {
+        "Class": "Wizard",
+        "Policy": "Including recorded zeros",
+        "class_n": 41906,
+        "n": 41903,
+        "mean": 241.0073264444073,
+        "median": 0.0,
+        "p25": 0.0,
+        "p75": 129.0,
+        "p95": 1315.0,
+        "zero_n": 24765,
+        "negative_n": 3,
+        "missing_n": 0,
+        "at_or_above_cap_n": 0,
+        "positive_pct_of_valid": 40.89921962627974
+      },
+      {
+        "Class": "Wizard",
+        "Policy": "Positive values only",
+        "class_n": 41906,
+        "n": 17138,
+        "mean": 589.2712101762166,
+        "median": 129.0,
+        "p25": 52.0,
+        "p75": 474.75,
+        "p95": 2683.449999999999,
+        "zero_n": 24765,
+        "negative_n": 3,
+        "missing_n": 0,
+        "at_or_above_cap_n": 0,
+        "positive_pct_of_valid": 40.89921962627974
+      }
+    ]
+  },
+  "coverage": {
+    "3": [
+      {
+        "Class": "Bard",
+        "class_n": 36829,
+        "known_n": 36829,
+        "missing_n": 0,
+        "shown_n": 19187,
+        "other_known_n": 17642
+      },
+      {
+        "Class": "Cleric",
+        "class_n": 41219,
+        "known_n": 41219,
+        "missing_n": 0,
+        "shown_n": 23920,
+        "other_known_n": 17299
+      },
+      {
+        "Class": "Druid",
+        "class_n": 31998,
+        "known_n": 31998,
+        "missing_n": 0,
+        "shown_n": 16904,
+        "other_known_n": 15094
+      },
+      {
+        "Class": "Sorcerer",
+        "class_n": 34281,
+        "known_n": 34281,
+        "missing_n": 0,
+        "shown_n": 16482,
+        "other_known_n": 17799
+      },
+      {
+        "Class": "Warlock",
+        "class_n": 37051,
+        "known_n": 37051,
+        "missing_n": 0,
+        "shown_n": 22357,
+        "other_known_n": 14694
+      },
+      {
+        "Class": "Wizard",
+        "class_n": 41906,
+        "known_n": 41906,
+        "missing_n": 0,
+        "shown_n": 28434,
+        "other_known_n": 13472
+      }
+    ],
+    "4": [
+      {
+        "Class": "Bard",
+        "class_n": 36829,
+        "known_n": 25675,
+        "missing_n": 11154,
+        "shown_n": 14335,
+        "other_known_n": 11340
+      },
+      {
+        "Class": "Cleric",
+        "class_n": 41219,
+        "known_n": 30221,
+        "missing_n": 10998,
+        "shown_n": 19934,
+        "other_known_n": 10287
+      },
+      {
+        "Class": "Druid",
+        "class_n": 31998,
+        "known_n": 22718,
+        "missing_n": 9280,
+        "shown_n": 13029,
+        "other_known_n": 9689
+      },
+      {
+        "Class": "Sorcerer",
+        "class_n": 34281,
+        "known_n": 24508,
+        "missing_n": 9773,
+        "shown_n": 13963,
+        "other_known_n": 10545
+      },
+      {
+        "Class": "Warlock",
+        "class_n": 37051,
+        "known_n": 24924,
+        "missing_n": 12127,
+        "shown_n": 14717,
+        "other_known_n": 10207
+      },
+      {
+        "Class": "Wizard",
+        "class_n": 41906,
+        "known_n": 31774,
+        "missing_n": 10132,
+        "shown_n": 22417,
+        "other_known_n": 9357
+      }
+    ],
+    "5": [
+      {
+        "Class": "Bard",
+        "class_n": 36829,
+        "known_n": 15511,
+        "missing_n": 21318,
+        "shown_n": 14027,
+        "other_known_n": 1484
+      },
+      {
+        "Class": "Cleric",
+        "class_n": 41219,
+        "known_n": 33784,
+        "missing_n": 7435,
+        "shown_n": 29088,
+        "other_known_n": 4696
+      },
+      {
+        "Class": "Druid",
+        "class_n": 31998,
+        "known_n": 14536,
+        "missing_n": 17462,
+        "shown_n": 13596,
+        "other_known_n": 940
+      },
+      {
+        "Class": "Sorcerer",
+        "class_n": 34281,
+        "known_n": 28121,
+        "missing_n": 6160,
+        "shown_n": 26372,
+        "other_known_n": 1749
+      },
+      {
+        "Class": "Warlock",
+        "class_n": 37051,
+        "known_n": 30116,
+        "missing_n": 6935,
+        "shown_n": 27760,
+        "other_known_n": 2356
+      },
+      {
+        "Class": "Wizard",
+        "class_n": 41906,
+        "known_n": 17837,
+        "missing_n": 24069,
+        "shown_n": 13200,
+        "other_known_n": 4637
+      }
+    ],
+    "6": [
+      {
+        "Class": "Bard",
+        "Level": 0,
+        "class_n": 495,
+        "list_n": 219,
+        "missing_list_n": 276,
+        "level_list_n": 211
+      },
+      {
+        "Class": "Bard",
+        "Level": 1,
+        "class_n": 495,
+        "list_n": 219,
+        "missing_list_n": 276,
+        "level_list_n": 216
+      },
+      {
+        "Class": "Bard",
+        "Level": 2,
+        "class_n": 495,
+        "list_n": 219,
+        "missing_list_n": 276,
+        "level_list_n": 138
+      },
+      {
+        "Class": "Cleric",
+        "Level": 0,
+        "class_n": 697,
+        "list_n": 694,
+        "missing_list_n": 3,
+        "level_list_n": 362
+      },
+      {
+        "Class": "Cleric",
+        "Level": 1,
+        "class_n": 697,
+        "list_n": 694,
+        "missing_list_n": 3,
+        "level_list_n": 691
+      },
+      {
+        "Class": "Cleric",
+        "Level": 2,
+        "class_n": 697,
+        "list_n": 694,
+        "missing_list_n": 3,
+        "level_list_n": 429
+      },
+      {
+        "Class": "Druid",
+        "Level": 0,
+        "class_n": 490,
+        "list_n": 261,
+        "missing_list_n": 229,
+        "level_list_n": 229
+      },
+      {
+        "Class": "Druid",
+        "Level": 1,
+        "class_n": 490,
+        "list_n": 261,
+        "missing_list_n": 229,
+        "level_list_n": 198
+      },
+      {
+        "Class": "Druid",
+        "Level": 2,
+        "class_n": 490,
+        "list_n": 261,
+        "missing_list_n": 229,
+        "level_list_n": 147
+      },
+      {
+        "Class": "Sorcerer",
+        "Level": 0,
+        "class_n": 422,
+        "list_n": 267,
+        "missing_list_n": 155,
+        "level_list_n": 212
+      },
+      {
+        "Class": "Sorcerer",
+        "Level": 1,
+        "class_n": 422,
+        "list_n": 267,
+        "missing_list_n": 155,
+        "level_list_n": 248
+      },
+      {
+        "Class": "Sorcerer",
+        "Level": 2,
+        "class_n": 422,
+        "list_n": 267,
+        "missing_list_n": 155,
+        "level_list_n": 150
+      },
+      {
+        "Class": "Warlock",
+        "Level": 0,
+        "class_n": 438,
+        "list_n": 252,
+        "missing_list_n": 186,
+        "level_list_n": 250
+      },
+      {
+        "Class": "Warlock",
+        "Level": 1,
+        "class_n": 438,
+        "list_n": 252,
+        "missing_list_n": 186,
+        "level_list_n": 200
+      },
+      {
+        "Class": "Warlock",
+        "Level": 2,
+        "class_n": 438,
+        "list_n": 252,
+        "missing_list_n": 186,
+        "level_list_n": 124
+      },
+      {
+        "Class": "Wizard",
+        "Level": 0,
+        "class_n": 514,
+        "list_n": 274,
+        "missing_list_n": 240,
+        "level_list_n": 245
+      },
+      {
+        "Class": "Wizard",
+        "Level": 1,
+        "class_n": 514,
+        "list_n": 274,
+        "missing_list_n": 240,
+        "level_list_n": 243
+      },
+      {
+        "Class": "Wizard",
+        "Level": 2,
+        "class_n": 514,
+        "list_n": 274,
+        "missing_list_n": 240,
+        "level_list_n": 140
+      }
+    ]
+  }
+}

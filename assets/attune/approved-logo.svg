@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+<title id="title">Attune — Unified Petals</title>
+<desc id="desc">Concept 5A. Four elemental forms and a shared hollow center. Editable vector paths. color variant.</desc>
+<path id="air" fill="#DDA801" transform="rotate(0 256 256)" d="M 207,181 C 181,141 202,88 251,49 Q 256,45 261,49 C 310,88 331,141 305,181 C 277,164 235,164 207,181 Z"/>
+<path id="earth" fill="#749020" transform="rotate(90 256 256)" d="M 207,181 C 181,141 202,88 251,49 Q 256,45 261,49 C 310,88 331,141 305,181 C 277,164 235,164 207,181 Z"/>
+<path id="fire" fill="#D91816" transform="rotate(180 256 256)" d="M 207,181 C 181,141 202,88 251,49 Q 256,45 261,49 C 310,88 331,141 305,181 C 277,164 235,164 207,181 Z"/>
+<path id="water" fill="#0079C7" transform="rotate(270 256 256)" d="M 207,181 C 181,141 202,88 251,49 Q 256,45 261,49 C 310,88 331,141 305,181 C 277,164 235,164 207,181 Z"/>
+<path id="shared-center" fill="#292A2D" fill-rule="evenodd" d="M 318,256 A 62,62 0 1 1 194,256 A 62,62 0 1 1 318,256 Z M 306,256 A 50,50 0 1 0 206,256 A 50,50 0 1 0 306,256 Z"/>
+</svg>

@@ -1,0 +1,6 @@
+assets/resume/
+REVIEW.md
+**/REVIEW.md
+.env*
+.DS_Store
+public/

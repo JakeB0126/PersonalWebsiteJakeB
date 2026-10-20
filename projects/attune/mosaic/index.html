@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F5F2EC">
+  <meta name="description" content="An experimental desktop playground for Attune's weekly activity mosaic.">
+  <title>Attune — Mosaic playground</title>
+  <script>
+    // Restore the saved background before the first paint.
+    try {
+      if (JSON.parse(localStorage.getItem('attune.mosaic-appearance.v2'))?.darkMode === true) {
+        document.documentElement.dataset.theme = 'dark';
+        document.querySelector('meta[name="theme-color"]').content = '#242628';
+      }
+    } catch {}
+  </script>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23F5F2EC'/%3E%3Cpath d='M4 4H28L16 21Z' fill='%237D9874'/%3E%3Cpath d='M4 4L16 21L4 28Z' fill='%23D77860'/%3E%3Cpath d='M28 4V28H4L16 21Z' fill='%23758FBC'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="workspace-header"><div class="workspace-title"><span class="brand">attune<span class="brand-dot" aria-hidden="true">✳</span></span><h1>Mosaic playground</h1></div><div class="header-actions"><span class="prototype">EXPERIMENTAL WORKSPACE</span><label class="theme-toggle"><input id="dark-mode" type="checkbox" role="switch"><span class="switch-track" aria-hidden="true"></span>Dark mode</label></div></header>
+    <div class="workspace">
+    <section class="canvas" aria-labelledby="week-title">
+      <div class="mosaic-meta"><h2 id="week-title">Weekly mosaic</h2><span id="activity-count">0 activities</span></div>
+      <div class="preview-toolbar"><label for="preview-width">Preview width</label><input id="preview-width" data-setting="width" type="range" min="350" max="1100" step="10" value="760"><output id="preview-value" for="preview-width">760 px</output><button id="fit-preview" type="button">Fit</button></div>
+      <div class="mosaic-stage">
+      <div class="mosaic-frame">
+        <svg id="mosaic" viewBox="0 0 400 400" role="group" aria-label="Weekly activity mosaic" aria-describedby="mosaic-hint"></svg>
+        <div id="empty" class="empty"><span class="empty-mark" aria-hidden="true">＋</span><h2>A week taking shape</h2><p>Add your first activity.<br>It starts with one whole piece.</p></div>
+      </div>
+      </div>
+      <div class="detail" id="detail" aria-live="polite"><span class="detail-marker" aria-hidden="true"></span><div><p id="detail-name">A space for your week</p><p id="detail-element">Your activities will appear here.</p></div><button id="deselect" class="close-button" aria-label="Close activity details" hidden>×</button></div>
+      <p class="mosaic-hint" id="mosaic-hint">One piece, one activity. Size isn’t a measure of effort.</p>
+    </section>
+    <aside class="control-panel" aria-label="Mosaic controls">
+    <section class="add-section" aria-labelledby="add-title"><h2 id="add-title">Add an activity</h2><form id="activity-form">
+      <label for="activity-name">Activity name</label><input id="activity-name" name="name" placeholder="e.g. A walk in the park" maxlength="100" required autocomplete="off">
+      <fieldset><legend>Element</legend><div class="element-options">
+        <label><input type="radio" name="element" value="fire" checked><span><i class="swatch fire"></i>Fire</span></label>
+        <label><input type="radio" name="element" value="earth"><span><i class="swatch earth"></i>Earth</span></label>
+        <label><input type="radio" name="element" value="water"><span><i class="swatch water"></i>Water</span></label>
+        <label><input type="radio" name="element" value="air"><span><i class="swatch air"></i>Air</span></label>
+      </div></fieldset><button class="add-button" type="submit"><span aria-hidden="true">＋</span> Add to mosaic</button>
+    </form></section>
+    <div class="undo-row"><button id="undo" class="quiet-button" type="button" disabled><span aria-hidden="true">↶</span> Undo</button><span>Restore the previous mosaic</span></div>
+    <section class="demo-section" aria-labelledby="demo-title"><div class="demo-heading"><h2 id="demo-title">Load a demo</h2><span>ACTIVITIES</span></div><div class="demo-buttons"><button data-demo="1">Load 1</button><button data-demo="3">Load 3</button><button data-demo="8">Load 8</button><button data-demo="20">Load 20</button></div><p>Replaces this mosaic with sample activities.</p></section>
+    <section class="visual-settings" aria-labelledby="visual-title"><h2 id="visual-title">Surface &amp; motion</h2>
+      <label class="theme-toggle"><input id="show-icons" type="checkbox" role="switch" checked><span class="switch-track" aria-hidden="true"></span><span>Show icons</span></label>
+      <fieldset class="finish-picker"><legend>Finish</legend><div class="finish-options">
+        <label><input type="radio" name="finish" value="flat"><span>Flat</span></label>
+        <label><input type="radio" name="finish" value="frosted" checked><span>Frosted</span></label>
+        <label><input type="radio" name="finish" value="glass"><span>Glass</span></label>
+      </div></fieldset>
+      <div class="setting"><label for="gap">Tile gap</label><output id="gap-value" for="gap">3.5 px</output><input id="gap" data-setting="gap" type="range" min="1" max="8" step="0.5" value="3.5"></div>
+      <div class="setting"><label for="texture">Frosted texture</label><output id="texture-value" for="texture">30%</output><input id="texture" data-setting="texture" type="range" min="0" max="100" step="5" value="30"></div>
+      <div class="setting"><label for="shadow">Shadow depth</label><output id="shadow-value" for="shadow">1.0×</output><input id="shadow" data-setting="shadow" type="range" min="0" max="2" step="0.1" value="1"></div>
+      <div class="setting"><label for="motion">Motion intensity</label><output id="motion-value" for="motion">1.0×</output><input id="motion" data-setting="motion" type="range" min="0" max="2" step="0.1" value="1"></div>
+      <p id="gap-note">Appearance only. Your arrangement stays the same.</p>
+    </section>
+    <section class="elements" aria-labelledby="elements-title"><h2 id="elements-title">Element legend</h2><ul class="legend">
+      <li><span class="swatch fire"></span><div><strong>Fire</strong><span>Challenge &amp; Exertion</span></div></li>
+      <li><span class="swatch earth"></span><div><strong>Earth</strong><span>Grounding &amp; Restoration</span></div></li>
+      <li><span class="swatch water"></span><div><strong>Water</strong><span>Creative Expression</span></div></li>
+      <li><span class="swatch air"></span><div><strong>Air</strong><span>Connection &amp; Play</span></div></li>
+    </ul></section>
+    <footer><span id="save-status">Saved on this device</span></footer>
+    <p id="announcement" class="sr-only" role="status"></p><p id="error" role="alert" hidden></p>
+    </aside>
+    </div>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

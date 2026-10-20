@@ -30,3 +30,15 @@ test('image objects have no button or link semantics; project-title links remain
  assert.equal((html.match(/<div class="(?:proggy-preview-toggle|cover-preview-toggle)" hidden>/g)||[]).length,5);
  assert.match(html, /id="compendium-title"><a href="projects\/spellcasters-compendium\/"/);
 });
+
+test('Attune hover follows pointer capability, resets, and has no motion under reduced-motion preference', () => {
+ const script=fs.readFileSync('project-preview.js','utf8');
+ for (const pointerType of ['touch','mouse']) for (const fine of [false,true]) {
+  const handlers={},attune={dataset:{},addEventListener:(k,f)=>handlers[k]=f};
+  vm.runInNewContext(script,{document:{querySelectorAll:()=>[],querySelector:s=>s==='.attune-logo-visual'?attune:null},window:{matchMedia:()=>({matches:fine})}});
+  handlers.pointerenter({pointerType}); assert.equal(attune.dataset.hover,String(pointerType==='mouse'&&fine));
+  handlers.pointerleave(); assert.equal(attune.dataset.hover,'false');
+ }
+ const css=fs.readFileSync('styles.css','utf8');
+ assert.match(css, /@media \(hover: hover\) and \(pointer: fine\) and \(prefers-reduced-motion: no-preference\)\s*\{[\s\S]*?attune-logo/);
+});

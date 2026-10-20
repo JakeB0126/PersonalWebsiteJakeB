@@ -22,3 +22,11 @@ if (lotus) {
   });
   lotus.addEventListener('pointerleave', () => { lotus.dataset.hover = 'false'; });
 }
+
+const attune = document.querySelector('.attune-logo-visual');
+if (attune) {
+  attune.addEventListener('pointerenter', event => {
+    attune.dataset.hover = String(event.pointerType !== 'touch' && window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+  });
+  attune.addEventListener('pointerleave', () => { attune.dataset.hover = 'false'; });
+}

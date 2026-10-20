@@ -56,6 +56,7 @@
   "projects/attune/mosaic/index.html",
   "projects/attune/mosaic/material.js",
   "projects/attune/mosaic/mosaic.js",
+  "projects/attune/mosaic/palettes.js",
   "projects/attune/mosaic/renderer.js",
   "projects/attune/mosaic/styles.css",
   "projects/attune/mosaic/symbols.js",

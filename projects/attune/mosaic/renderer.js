@@ -1,7 +1,8 @@
 import { ELEMENTS } from './mosaic.js';
 import { PressGesture, center, contains, finishOf, insetPolygon, mixColor, pointsString, renderLayout, transitionPair, transitionPolygons } from './appearance.js';
 import { blendFrost, bounds, frostProfile, tileProjection, roundedContour } from './material.js';
-import { SYMBOL_PATHS, symbolFit } from './symbols.js';
+import { createSymbol, symbolFit } from './symbols.js';
+import { colorFor, inkFor } from './palettes.js';
 const NS = 'http://www.w3.org/2000/svg';
 const node = (tag, attrs = {}) => { const n = document.createElementNS(NS, tag); for (const [key, value] of Object.entries(attrs)) n.setAttribute(key, value); return n; };
 const smooth = t => t * t * (3 - 2 * t);
@@ -67,7 +68,7 @@ export class MosaicRenderer {
     if (!ghost) group.append(node('polygon', { class: 'tile-hit', points: pointsString(piece.points), fill: 'transparent' }));
     return { group, visual, piece, materialId: `glass-${++materialId}` };
   }
-  paint(tile, points, color = ELEMENTS[tile.piece.activity.element].color, seam = null, seamVisibility = 1, pose = 0, lightBounds = null, frosting = frostProfile(tile.piece.activity.id)) {
+  paint(tile, points, color = colorFor(tile.piece.activity.element, this.settings), seam = null, seamVisibility = 1, pose = 0, lightBounds = null, frosting = frostProfile(tile.piece.activity.id)) {
     const u = this.layout.unit, finish = finishOf(this.settings), flat = finish === 'flat', glass = finish === 'glass', depth = this.settings.shadow * (glass ? 1.15 : 1);
     const amount = pose * this.settings.motion, lift = Math.max(0, amount), id = tile.materialId;
     const project = tileProjection(points, u, amount), facePoints = points.map(project), shape = pointsString(facePoints);
@@ -139,9 +140,8 @@ export class MosaicRenderer {
       const scale = fit.size / 24;
       const symbol = node('g', { class: 'tile-symbol', 'data-element': tile.piece.activity.element, 'data-size': fit.size / u, 'aria-hidden': 'true', opacity: seam ? smooth(clamp((seamVisibility - .22) / .78)) : 1, transform: `matrix(${px[0] - anchor[0]} ${px[1] - anchor[1]} ${py[0] - anchor[0]} ${py[1] - anchor[1]} ${anchor[0]} ${anchor[1]}) scale(${scale}) translate(-12 -12)`, fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
       if (scale > 0) {
-        const glyph = SYMBOL_PATHS[tile.piece.activity.element];
-        if (!flat) symbol.append(node('path', { d: glyph, stroke: '#FFF9EF', 'stroke-opacity': glass ? .46 : .26, 'stroke-width': fit.stroke / scale, transform: `translate(0,${.6 * u / scale})` }));
-        symbol.append(node('path', { class: 'symbol-ink', d: glyph, stroke: '#242824', 'stroke-opacity': '.84', 'stroke-width': fit.stroke / scale }));
+        const glyph = createSymbol(tile.piece.activity.element, inkFor(tile.piece.activity.element, this.settings));
+        glyph.setAttribute('class', 'symbol-ink'); symbol.append(glyph);
       }
       tile.visual.append(symbol);
     }
@@ -184,7 +184,7 @@ export class MosaicRenderer {
     this.svg.dataset.animating = 'undo'; this.animate(160, t => tile.visual.setAttribute('opacity', 1 - t), () => { this.ghost?.remove(); this.ghost = null; this.svg.removeAttribute('data-animating'); });
   }
   animatePair(pair) {
-    const { undo, original, children, seam } = pair, parentColor = ELEMENTS[original.activity.element].color;
+    const { undo, original, children, seam } = pair, parentColor = colorFor(original.activity.element, this.settings);
     let targets;
     if (undo) {
       this.tiles.get(original.activity.id).visual.setAttribute('visibility', 'hidden');
@@ -200,7 +200,7 @@ export class MosaicRenderer {
       for (let i = 0; i < targets.length; i++) {
         const tile = targets[i], child = children[i];
         const colorPhase = undo ? 1 - smooth(clamp(t / .84)) : smooth(clamp(t / .40));
-        const color = mixColor(parentColor, ELEMENTS[child.activity.element].color, colorPhase);
+        const color = mixColor(parentColor, colorFor(child.activity.element, this.settings), colorPhase);
         const parentBounds = bounds(insetPolygon(original.points, this.layout.distance)), childBounds = bounds(insetPolygon(child.points, this.layout.distance));
         const lighting = Object.fromEntries(Object.keys(parentBounds).map(key => [key, parentBounds[key] + (childBounds[key] - parentBounds[key]) * phase]));
         const frosting = blendFrost(frostProfile(original.activity.id), frostProfile(child.activity.id), phase);

@@ -1,7 +1,8 @@
 import { ELEMENTS, STORAGE_KEY, newDocument, addToDocument, undoDocument, demoDocument, parseDocument } from './mosaic.js';
 import { DEFAULT_SETTINGS, VISUAL_KEY, parseSettings } from './appearance.js';
 import { MosaicRenderer } from './renderer.js';
-import { SYMBOL_PATHS } from './symbols.js';
+import { createSymbol } from './symbols.js';
+import { paletteFor } from './palettes.js';
 const $ = selector => document.querySelector(selector);
 let doc = newDocument(), selectedId = null, saveError = false;
 let settings = { ...DEFAULT_SETTINGS };
@@ -60,6 +61,7 @@ render();
 
 function syncVisualControls() {
   $('#dark-mode').checked = settings.darkMode;
+  $('#palette-name').textContent = settings.darkMode ? 'Charcoal · soft colors' : 'Warm white · bright colors';
   $('#show-icons').checked = settings.showIcons;
   for (const key of ['gap', 'texture', 'shadow', 'motion', 'width']) {
     $(`[data-setting="${key}"]`).value = settings[key];
@@ -80,7 +82,7 @@ function saveVisualSettings() {
 }
 function applyTheme() {
   document.documentElement.dataset.theme = settings.darkMode ? 'dark' : 'light';
-  $('meta[name="theme-color"]').content = settings.darkMode ? '#242628' : '#F5F2EC';
+  $('meta[name="theme-color"]').content = paletteFor(settings).background;
 }
 $('#show-icons').addEventListener('change', event => {
   settings = { ...settings, showIcons: event.target.checked };
@@ -88,7 +90,7 @@ $('#show-icons').addEventListener('change', event => {
 });
 $('#dark-mode').addEventListener('change', event => {
   settings = { ...settings, darkMode: event.target.checked };
-  applyTheme(); saveVisualSettings();
+  applyTheme(); applyVisualSettings();
 });
 document.querySelectorAll('[data-setting]').forEach(input => input.addEventListener('input', () => { settings = { ...settings, [input.dataset.setting]: Number(input.value) }; applyVisualSettings(); }));
 document.querySelectorAll('[name="finish"]').forEach(input => input.addEventListener('change', () => { if (input.checked) { settings = { ...settings, finish: input.value, flat: input.value === 'flat' }; applyVisualSettings(); } }));
@@ -100,7 +102,7 @@ document.querySelectorAll('.legend .swatch').forEach(swatch => {
   const element = Object.keys(ELEMENTS).find(key => swatch.classList.contains(key));
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('viewBox', '0 0 24 24'); svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('class', 'legend-symbol');
-  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path'); path.setAttribute('d', SYMBOL_PATHS[element]); svg.append(path); swatch.after(svg);
+  svg.append(createSymbol(element, 'currentColor')); swatch.after(svg);
 });
 
 // Optional page-scoped tools use the same immutable actions as the visible UI.

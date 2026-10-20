@@ -1,10 +1,11 @@
+import { PALETTES } from './palettes.js';
 // All geometry is in a fixed 400 × 400 frame. Rendering never modifies it.
 export const FRAME = 400;
 export const ELEMENTS = Object.freeze({
-  fire: { label: 'Fire', meaning: 'Challenge & Exertion', color: '#D77860' },
-  earth: { label: 'Earth', meaning: 'Grounding & Restoration', color: '#7D9874' },
-  water: { label: 'Water', meaning: 'Creative Expression', color: '#758FBC' },
-  air: { label: 'Air', meaning: 'Connection & Play', color: '#D6B65C' },
+  fire: { label: 'Fire', meaning: 'Challenge & Exertion', color: PALETTES.light.colors.fire },
+  earth: { label: 'Earth', meaning: 'Grounding & Restoration', color: PALETTES.light.colors.earth },
+  water: { label: 'Water', meaning: 'Creative Expression', color: PALETTES.light.colors.water },
+  air: { label: 'Air', meaning: 'Connection & Play', color: PALETTES.light.colors.air },
 });
 export const STORAGE_KEY = 'attune.weekly-mosaic.v1';
 export const area = points => Math.abs(points.reduce((sum, p, i) => { const q = points[(i + 1) % points.length]; return sum + p[0] * q[1] - q[0] * p[1]; }, 0)) / 2;

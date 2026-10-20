@@ -1,15 +1,15 @@
 :root {
-  --background: #F5F2EC;
+  --background: #FFFCF0;
   --text: #242824;
-  --fire: #D77860;
-  --earth: #7D9874;
-  --water: #758FBC;
-  --air: #D6B65C;
+  --fire: #D91816;
+  --earth: #749020;
+  --water: #0079C7;
+  --air: #DDA801;
   --boundary: #575B53;
   --muted: #62675E;
   --line: #D6D7CF;
   --field: #FCFAF6;
-  --backing: #E8E3DA;
+  --backing: #FFFCF0;
   --control-border: #BFC3B8;
   --control-hover: #E8E8DF;
   --placeholder: #73786D;
@@ -21,14 +21,18 @@
   background: var(--background);
   font-synthesis: none;
 }
-/* Element fills and tile symbols retain their original palette in both themes. */
+/* Paired palettes match the two supplied symbol sheets exactly. */
 :root[data-theme="dark"] {
-  --background: #242628;
+  --fire: #D36341;
+  --earth: #8BA74B;
+  --water: #439C96;
+  --air: #E9DF6F;
+  --background: #262626;
   --text: #EEECE6;
   --muted: #B7BCB8;
   --line: #42474A;
   --field: #2D3032;
-  --backing: #323537;
+  --backing: #262626;
   --boundary: #A4ABA6;
   --control-border: #738083;
   --control-hover: #3F4645;
@@ -140,7 +144,7 @@ legend { margin-bottom: 9px; padding: 0; }
 .finish-options span { display: block; padding: 9px 4px; border: 1px solid var(--control-border); border-radius: 4px; text-align: center; font-size: 14px; }
 .finish-options input:checked + span { border-color: var(--text); background: var(--control-hover); box-shadow: inset 0 0 0 .5px var(--text); }
 .finish-options input:focus-visible + span { outline: 2px solid var(--text); outline-offset: 3px; }
-.legend-symbol { width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: var(--text); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.legend-symbol { width: 20px; height: 20px; flex-shrink: 0; color: var(--text); }
 .legend li { gap: 7px; }
 .tile-symbol { pointer-events: none; }
 .setting { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 6px 12px; margin-top: 12px; }

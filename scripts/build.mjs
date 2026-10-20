@@ -3,8 +3,8 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 if (!process.argv.includes('--local-review')) {
-  const required = ['RESUME_PASSWORD_HASH', 'RESUME_FILE_KEY', 'RESEND_API_KEY', 'CONTACT_TO', 'CONTACT_FROM'];
-  if (required.some(key => !process.env[key]) || process.env.PORTFOLIO_WAF_RATE_LIMITED !== 'true') throw new Error('Publication blocked: protected résumé, contact delivery, and verified WAF configuration are required.');
+  const required = ['RESUME_PASSWORD_HASH', 'RESUME_FILE_KEY'];
+  if (required.some(key => !process.env[key]) || process.env.PORTFOLIO_WAF_RATE_LIMITED !== 'true') throw new Error('Publication blocked: protected résumé and verified WAF configuration are required.');
   await access(resolve(root, 'private/resume.enc'));
 }
 const files = JSON.parse(await readFile(resolve(root, 'static-files.json'), 'utf8'));

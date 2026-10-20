@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="navigation.js" defer></script>
     <script src="project-preview.js" defer></script>
-    <script src="contact-form.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -191,14 +190,16 @@
             </span>
             LinkedIn
           </a>
-</div>
-        <form id="contact-form" class="portfolio-form" action="/api/contact" method="post" aria-describedby="contact-status">
-          <div class="form-pair"><div><label for="contact-name">Name</label><input id="contact-name" name="name" autocomplete="name" maxlength="80" required></div><div><label for="contact-email">Reply email</label><input id="contact-email" type="email" name="email" autocomplete="email" maxlength="254" required></div></div>
-          <label for="contact-message">Message</label><textarea id="contact-message" name="message" rows="5" minlength="10" maxlength="4000" required></textarea>
-          <div class="contact-honeypot" aria-hidden="true"><label for="contact-website">Leave this field empty</label><input id="contact-website" name="website" tabindex="-1" autocomplete="off"></div>
-          <button type="submit" disabled>Send message</button><p id="contact-status" role="status" aria-live="polite">Checking form availability…</p>
-          <noscript><p>The contact form requires JavaScript. You can also reach me through LinkedIn above.</p></noscript>
-        </form>
+          <a href="mailto:jake.biondolillo26@gmail.com">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm0 2v.2l8 5.2 8-5.2V7H4zm16 10V9.3l-7.38 4.8a1 1 0 0 1-1.24 0L4 9.3V17h16z"
+                />
+              </svg>
+            </span>
+            jake.biondolillo26@gmail.com
+          </a></div>
       </section>
     </main>
   </body>

@@ -31,14 +31,22 @@ test('image objects have no button or link semantics; project-title links remain
  assert.match(html, /id="compendium-title"><a href="projects\/spellcasters-compendium\/"/);
 });
 
-test('Attune hover follows pointer capability, resets, and has no motion under reduced-motion preference', () => {
+test('Attune reveals the complete original set, resets on leave, and reduces only motion', () => {
  const script=fs.readFileSync('project-preview.js','utf8');
  for (const pointerType of ['touch','mouse']) for (const fine of [false,true]) {
   const handlers={},attune={dataset:{},addEventListener:(k,f)=>handlers[k]=f};
-  vm.runInNewContext(script,{document:{querySelectorAll:()=>[],querySelector:s=>s==='.attune-logo-visual'?attune:null},window:{matchMedia:()=>({matches:fine})}});
+  vm.runInNewContext(script,{document:{querySelectorAll:()=>[],querySelector:s=>s==='.attune-tile'?attune:null},window:{matchMedia:()=>({matches:fine})}});
   handlers.pointerenter({pointerType}); assert.equal(attune.dataset.hover,String(pointerType==='mouse'&&fine));
   handlers.pointerleave(); assert.equal(attune.dataset.hover,'false');
  }
  const css=fs.readFileSync('styles.css','utf8');
- assert.match(css, /@media \(hover: hover\) and \(pointer: fine\) and \(prefers-reduced-motion: no-preference\)\s*\{[\s\S]*?attune-logo/);
+ assert.match(css, /@media \(prefers-reduced-motion: no-preference\)\s*\{[\s\S]*?attune-logo/);
+ const staticRules=css.slice(css.indexOf('/* Reveal one complete'),css.indexOf('@media (prefers-reduced-motion: no-preference)',css.indexOf('/* Reveal one complete')));
+ assert.match(staticRules,/attune-tile:focus-within \.attune-symbol-set \{ opacity: 1; visibility: visible;/);
+ assert.match(staticRules,/attune-tile\[data-hover="true"\] \.attune-symbol-set/);
+ const html=fs.readFileSync('index.html','utf8');
+ const set=html.match(/<div class="attune-symbol-set"[\s\S]*?<\/figure>/)[0];
+ for(const element of ['fire','water','earth','air']) assert.equal((set.match(new RegExp(`projects/attune/assets/${element}\\.svg`,'g'))||[]).length,1);
+ assert.equal((set.match(/<img /g)||[]).length,4);
+ assert.match(html,/id="attune-title"><a href="projects\/attune\/"/);
 });

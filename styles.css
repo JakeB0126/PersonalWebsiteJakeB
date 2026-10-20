@@ -275,13 +275,19 @@ h3 { font-size: 1.5rem; }
 .page { padding-bottom: var(--space-4); }
 .page > .section:last-child { border-bottom: 0; padding-bottom: 0; }
 
-/* A quiet expansion of the original Attune mark; no looping motion. */
-.attune-logo-visual { position: relative; isolation: isolate; overflow: hidden; }
-.attune-logo-visual::before { content: ''; position: absolute; z-index: -1; width: 68%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #e4ddb54d, #e4ddb500 70%); opacity: 0; }
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .attune-logo { transition: transform 650ms cubic-bezier(.2,.7,.2,1); }
-  .attune-logo-visual::before { transition: opacity 650ms ease; }
-  .attune-logo-visual[data-hover="true"] .attune-logo,
-  .project-tile:focus-within .attune-logo { transform: translateY(-5px) scale(1.07); }
-  .attune-logo-visual[data-hover="true"]::before { opacity: 1; }
+/* Reveal one complete, original vector family without moving the tile or link. */
+.attune-logo-visual { position: relative; overflow: hidden; }
+.attune-symbol-set { position: absolute; inset: clamp(1.5rem, 4vw, 3rem); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: clamp(.75rem, 2vw, 2rem); opacity: 0; visibility: hidden; pointer-events: none; }
+.attune-symbol-set > div { min-width: 0; min-height: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto; justify-items: center; align-items: center; gap: .25rem; }
+.attune-symbol-set img { display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; aspect-ratio: 1; object-fit: contain; }
+.attune-symbol-set span { font: 400 .7rem/1.4 var(--font-mono); letter-spacing: .15em; text-transform: uppercase; color: #292a2d; }
+.attune-tile[data-hover="true"] .attune-logo,
+.attune-tile:focus-within .attune-logo { opacity: 0; }
+.attune-tile[data-hover="true"] .attune-symbol-set,
+.attune-tile:focus-within .attune-symbol-set { opacity: 1; visibility: visible; }
+@media (prefers-reduced-motion: no-preference) {
+  .attune-logo { transition: opacity 200ms ease; }
+  .attune-symbol-set { transform: translateY(8px); transition: opacity 240ms ease, transform 240ms ease, visibility 240ms; }
+  .attune-tile[data-hover="true"] .attune-symbol-set,
+  .attune-tile:focus-within .attune-symbol-set { transform: translateY(0); }
 }

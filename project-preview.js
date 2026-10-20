@@ -23,7 +23,7 @@ if (lotus) {
   lotus.addEventListener('pointerleave', () => { lotus.dataset.hover = 'false'; });
 }
 
-const attune = document.querySelector('.attune-logo-visual');
+const attune = document.querySelector('.attune-tile');
 if (attune) {
   attune.addEventListener('pointerenter', event => {
     attune.dataset.hover = String(event.pointerType !== 'touch' && window.matchMedia('(hover: hover) and (pointer: fine)').matches);

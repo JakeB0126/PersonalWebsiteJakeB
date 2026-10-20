@@ -1,8 +1,7 @@
 import { ELEMENTS } from './mosaic.js';
 import { PressGesture, center, contains, finishOf, insetPolygon, mixColor, pointsString, renderLayout, transitionPair, transitionPolygons } from './appearance.js';
 import { blendFrost, bounds, frostProfile, tileProjection, roundedContour } from './material.js';
-import { createSymbol, symbolFit } from './symbols.js';
-import { colorFor, inkFor } from './palettes.js';
+import { colorFor } from './palettes.js';
 const NS = 'http://www.w3.org/2000/svg';
 const node = (tag, attrs = {}) => { const n = document.createElementNS(NS, tag); for (const [key, value] of Object.entries(attrs)) n.setAttribute(key, value); return n; };
 const smooth = t => t * t * (3 - 2 * t);
@@ -69,7 +68,7 @@ export class MosaicRenderer {
     return { group, visual, piece, materialId: `glass-${++materialId}` };
   }
   paint(tile, points, color = colorFor(tile.piece.activity.element, this.settings), seam = null, seamVisibility = 1, pose = 0, lightBounds = null, frosting = frostProfile(tile.piece.activity.id)) {
-    const u = this.layout.unit, finish = finishOf(this.settings), flat = finish === 'flat', glass = finish === 'glass', depth = this.settings.shadow * (glass ? 1.15 : 1);
+    const u = this.layout.unit, finish = finishOf(this.settings), glass = finish === 'glass', depth = this.settings.shadow * (glass ? 1.15 : 1);
     const amount = pose * this.settings.motion, lift = Math.max(0, amount), id = tile.materialId;
     const project = tileProjection(points, u, amount), facePoints = points.map(project), shape = pointsString(facePoints);
     const nearSeam = p => {
@@ -82,7 +81,7 @@ export class MosaicRenderer {
     const path = contour.path, b = lightBounds || bounds(facePoints);
     const glow = mixColor(color, '#FFF9EF', .70), glint = mixColor(color, '#FFF9EF', .80);
     tile.visual.replaceChildren();
-    if (!flat) {
+    {
       const defs = node('defs'), clip = node('clipPath', { id: `${id}-clip` }); clip.append(node('path', { d: path })); defs.append(clip);
       // Reflection and absorption form a broad, diffuse lens; they are not a
       // white stripe. Light stays upper-left, with only the pressed face reacting.
@@ -114,7 +113,7 @@ export class MosaicRenderer {
     }
     const base = node('path', { class: 'tile-surface', d: path, 'data-points': shape, fill: color });
     tile.visual.append(base);
-    if (!flat) {
+    {
       tile.visual.append(node('path', { d: path, fill: 'url(#glass-tone)' }), node('path', { d: path, fill: `url(#${id}-absorption)` }), node('path', { class: 'tile-reflection', d: path, fill: `url(#${id}-reflection)` }));
       if (glass) tile.visual.append(node('path', { class: 'glass-body', d: path, fill: `url(#${id}-body)` }), node('path', { class: 'glass-reflection', d: path, fill: `url(#${id}-specular)` }));
       if (!glass && this.settings.texture > 0) tile.visual.append(node('path', { class: 'tile-texture', d: path, fill: `url(#${id}-grain)`, opacity: .10 * this.settings.texture / 100 }));
@@ -135,16 +134,6 @@ export class MosaicRenderer {
       tile.visual.append(edges);
     }
     tile.visual.append(node('path', { class: 'press-sheen', d: path, fill: '#FFFFFF' }));
-    if (this.settings.showIcons !== false) {
-      const fit = tile.symbolFit || symbolFit(points, u), anchor = project(fit.center), px = project([fit.center[0] + 1, fit.center[1]]), py = project([fit.center[0], fit.center[1] + 1]);
-      const scale = fit.size / 24;
-      const symbol = node('g', { class: 'tile-symbol', 'data-element': tile.piece.activity.element, 'data-size': fit.size / u, 'aria-hidden': 'true', opacity: seam ? smooth(clamp((seamVisibility - .22) / .78)) : 1, transform: `matrix(${px[0] - anchor[0]} ${px[1] - anchor[1]} ${py[0] - anchor[0]} ${py[1] - anchor[1]} ${anchor[0]} ${anchor[1]}) scale(${scale}) translate(-12 -12)`, fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
-      if (scale > 0) {
-        const glyph = createSymbol(tile.piece.activity.element, inkFor(tile.piece.activity.element, this.settings));
-        glyph.setAttribute('class', 'symbol-ink'); symbol.append(glyph);
-      }
-      tile.visual.append(symbol);
-    }
     tile.visual.append(node('path', { class: 'focus-ring', d: path, fill: 'none', stroke: '#242824', 'stroke-width': 1.5 * u, 'stroke-dasharray': `${3 * u} ${3 * u}` }));
     tile.visual.append(node('path', { class: 'selection-mark', d: path, fill: 'none', stroke: '#242824', 'stroke-width': .85 * u }));
   }
@@ -154,7 +143,6 @@ export class MosaicRenderer {
     this.layout = renderLayout(pieces, this.width, this.settings.gap); this.createDefs();
     this.svg.dataset.effectiveGap = this.layout.gap.toFixed(3);
     this.svg.dataset.reducedMotion = String(this.reduced.matches);
-    this.svg.classList.toggle('flat-mode', finishOf(this.settings) === 'flat');
     this.svg.dataset.finish = finishOf(this.settings);
     const ids = new Set(pieces.map(p => p.activity.id));
     for (const [id, tile] of this.tiles) if (!ids.has(id)) { tile.group.remove(); this.tiles.delete(id); }
@@ -162,7 +150,6 @@ export class MosaicRenderer {
       const id = piece.activity.id;
       if (!this.tiles.has(id)) { const tile = this.makeTile(piece); this.tiles.set(id, tile); this.scene.append(tile.group); }
       const tile = this.tiles.get(id); tile.piece = piece;
-      tile.symbolFit = symbolFit(this.layout.polygons.get(id), this.layout.unit);
       tile.group.dataset.geometry = pointsString(piece.points);
       tile.group.setAttribute('aria-label', `${piece.activity.name} — ${ELEMENTS[piece.activity.element].label}`);
       tile.group.querySelector('.tile-hit').setAttribute('points', pointsString(piece.points));
@@ -189,7 +176,7 @@ export class MosaicRenderer {
     if (undo) {
       this.tiles.get(original.activity.id).visual.setAttribute('visibility', 'hidden');
       this.ghost = node('g', { 'aria-hidden': 'true', 'pointer-events': 'none' }); this.svg.append(this.ghost);
-      targets = children.map(p => { const tile = this.makeTile(p, true); tile.symbolFit = symbolFit(insetPolygon(p.points, this.layout.distance), this.layout.unit); this.ghost.append(tile.group); return tile; });
+      targets = children.map(p => { const tile = this.makeTile(p, true); this.ghost.append(tile.group); return tile; });
     } else targets = children.map(p => this.tiles.get(p.activity.id));
     const duration = 440, u = this.layout.unit, intensity = this.settings.motion;
     this.svg.dataset.animating = undo ? 'undo' : 'split';

@@ -160,12 +160,13 @@ test('frosting blends from the parent during splitting and survives reload and u
   assert.deepEqual([...reloaded.renderer.tiles.values()].map(frostingValues), children);
 });
 
-test('all three finishes preserve geometry and match every symbol to its activity', () => {
+test('both finishes preserve geometry and render no symbols', () => {
   const h = harness(), doc = demoDocument(20), original = JSON.stringify(doc);
-  for (const finish of ['glass', 'flat', 'frosted', 'glass']) {
-    h.renderer.setSettings({ ...DEFAULT_SETTINGS, finish, flat: finish === 'flat' }); h.renderer.render(doc.current.pieces);
+  for (const finish of ['glass', 'frosted', 'glass']) {
+    h.renderer.setSettings({ ...DEFAULT_SETTINGS, finish }); h.renderer.render(doc.current.pieces);
     for (const tile of h.renderer.tiles.values()) {
-      assert.equal(tile.visual.querySelector('.tile-symbol').getAttribute('data-element'), tile.piece.activity.element);
+      assert.equal(tile.visual.querySelector('.tile-symbol'), null);
+      assert.equal(tile.visual.querySelector('.symbol-ink'), null);
       assert.equal(tile.visual.querySelector('.tile-surface').getAttribute('fill'), ELEMENTS[tile.piece.activity.element].color);
       assert.equal(Boolean(tile.visual.querySelector('.glass-reflection')), finish === 'glass');
       assert.equal(Boolean(tile.visual.querySelector('.tile-texture')), finish === 'frosted');
@@ -179,7 +180,7 @@ test('all three finishes preserve geometry and match every symbol to its activit
   h.renderer.settle(true); h.finish(); assert.equal(materialSnapshot(tile.visual), before);
 });
 
-test('glass split/undo interruption leaves one correct glyph per tile and returns to empty', () => {
+test('glass split/undo interruption remains icon-free and returns to empty', () => {
   const h = harness(); h.renderer.setSettings({ ...DEFAULT_SETTINGS, finish: 'glass' });
   let doc = newDocument(713); const history = [];
   for (let i = 0; i < 20; i++) {
@@ -200,14 +201,14 @@ test('glass split/undo interruption leaves one correct glyph per tile and return
 
 
 test('paired palette changes preserve selection, geometry, undo and colors through interrupted transitions', async () => {
-  const { PALETTES, colorFor, inkFor } = await import('../../projects/attune/mosaic/palettes.js');
+  const { PALETTES, colorFor } = await import('../../projects/attune/mosaic/palettes.js');
   const h = harness(), doc = demoDocument(20), snapshot = JSON.stringify(doc);
   h.renderer.render(doc.current.pieces); h.renderer.select(3);
   for (const darkMode of [true, false, true]) {
     h.renderer.setSettings({ ...DEFAULT_SETTINGS, darkMode });
     for (const [id, tile] of h.renderer.tiles) {
       assert.equal(tile.visual.querySelector('.tile-surface').getAttribute('fill'), colorFor(tile.piece.activity.element, {darkMode}));
-      assert.equal(tile.visual.querySelector('.symbol-ink').getAttribute('fill'), inkFor(tile.piece.activity.element, {darkMode}));
+      assert.equal(tile.visual.querySelector('.symbol-ink'), null);
       assert.equal(tile.group.dataset.geometry, pointsString(tile.piece.points));
       assert.equal(tile.group.getAttribute('aria-pressed'), String(id === 3));
     }
@@ -220,4 +221,17 @@ test('paired palette changes preserve selection, geometry, undo and colors throu
     h.renderer.render(undoDocument(next).current.pieces, {before: next.current.pieces, animate:true}); h.finish(); settled(h);
     assert.deepEqual(undoDocument(next), doc);
   }
+});
+
+test('legacy icon-on and Flat settings cannot render glyphs or an unsupported finish', () => {
+ const h=harness(), doc=demoDocument(20), snapshot=JSON.stringify(doc);
+ for(const settings of [{finish:'flat',showIcons:true},{flat:true,showIcons:true},{finish:'glass',showIcons:true}]) {
+  h.renderer.setSettings({...DEFAULT_SETTINGS,...settings}); h.renderer.render(doc.current.pieces);
+  assert.equal(h.svg.dataset.finish,settings.finish==='glass'?'glass':'frosted');
+  for(const tile of h.renderer.tiles.values()) {
+   assert.equal(tile.visual.querySelector('.tile-symbol'),null); assert.equal(tile.visual.querySelector('.symbol-ink'),null);
+   assert.ok(tile.visual.querySelector('.tile-reflection'));
+  }
+  assert.equal(JSON.stringify(doc),snapshot);
+ }
 });

@@ -60,7 +60,6 @@ p, h1, h2 { margin: 0; }
 .theme-toggle input:focus-visible + .switch-track { outline: 2px solid var(--text); outline-offset: 4px; }
 .workspace-title { display: flex; align-items: center; gap: 24px; }
 .brand { font-family: Georgia, 'Times New Roman', serif; font-size: 32px; letter-spacing: -1.6px; }
-.brand-dot { font-family: Arial, sans-serif; font-size: 23px; vertical-align: top; margin-left: 4px; line-height: 1.6; letter-spacing: 0; }
 h1 { font-size: 20px; font-weight: 400; letter-spacing: -.35px; padding-left: 24px; border-left: 1px solid var(--control-border); }
 .prototype { font-size: 12px; letter-spacing: 1px; color: var(--muted); }
 .workspace { display: grid; grid-template-columns: minmax(0, 1fr) 336px; align-items: start; gap: 40px; padding-top: 24px; }
@@ -83,10 +82,8 @@ h1 { font-size: 20px; font-weight: 400; letter-spacing: -.35px; padding-left: 24
 .piece:focus-visible .focus-ring { opacity: .8; }
 .piece.is-pressed .press-sheen { opacity: .025; }
 .piece:hover:not(.is-pressed) .press-sheen { opacity: .018; }
-.flat-mode .piece.is-pressed .press-sheen { opacity: .11; }
 .empty { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; pointer-events: none; }
 .empty[hidden] { display: none; }
-.empty-mark { font-size: 32px; color: var(--boundary); margin-bottom: 18px; }
 .empty h2 { font: 400 28px Georgia, serif; margin-bottom: 12px; }
 .empty p { font-size: 16px; line-height: 1.65; color: var(--muted); }
 .detail { display: flex; align-items: center; gap: 12px; min-height: 72px; padding: 17px 0 10px; }
@@ -94,7 +91,7 @@ h1 { font-size: 20px; font-weight: 400; letter-spacing: -.35px; padding-left: 24
 .detail > div { min-width: 0; flex: 1; }
 #detail-name { font-size: 16px; font-weight: 500; overflow-wrap: anywhere; }
 #detail-element { font-size: 14px; color: var(--muted); margin-top: 5px; line-height: 1.4; }
-.close-button { border: 0; background: none; font-size: 24px; width: 40px; height: 40px; color: var(--muted); }
+.close-button { border: 1px solid var(--control-border); border-radius: 4px; padding: 7px 10px; background: transparent; font-size: 13px; }
 .mosaic-hint { font-size: 13px; line-height: 1.6; color: var(--muted); }
 .control-panel { min-width: 0; padding-left: 28px; border-left: 1px solid var(--line); }
 .control-panel h2 { font-size: 16px; font-weight: 500; }
@@ -138,15 +135,13 @@ legend { margin-bottom: 9px; padding: 0; }
 .legend div > span { display: block; font-size: 13px; line-height: 1.4; color: var(--muted); }
 .visual-settings h2 { margin-bottom: 15px; }
 .finish-picker { margin: 0 0 18px; }
-.finish-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+.finish-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px; }
 .finish-options label { position: relative; cursor: pointer; }
 .finish-options input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; }
 .finish-options span { display: block; padding: 9px 4px; border: 1px solid var(--control-border); border-radius: 4px; text-align: center; font-size: 14px; }
 .finish-options input:checked + span { border-color: var(--text); background: var(--control-hover); box-shadow: inset 0 0 0 .5px var(--text); }
 .finish-options input:focus-visible + span { outline: 2px solid var(--text); outline-offset: 3px; }
-.legend-symbol { width: 20px; height: 20px; flex-shrink: 0; color: var(--text); }
 .legend li { gap: 7px; }
-.tile-symbol { pointer-events: none; }
 .setting { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 6px 12px; margin-top: 12px; }
 .setting label { font-size: 14px; }
 .setting output { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }

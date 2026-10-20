@@ -84,8 +84,18 @@ test('saved appearance settings are isolated and bounded', () => {
   assert.equal(parseSettings('{"gap":99,"width":12}').gap, 8);
   assert.equal(parseSettings('{"gap":99,"width":12}').width, 350);
   assert.equal(parseSettings('bad data').gap, 3.5);
-  assert.equal(parseSettings('{"flat":true}').finish, 'flat');
+  assert.equal(parseSettings('{"flat":true}').finish, 'frosted');
   assert.equal(parseSettings('{"flat":false,"texture":50}').finish, 'frosted');
-  assert.equal(parseSettings('{"finish":"glass","flat":true}').flat, false);
+  assert.equal(parseSettings('{"finish":"glass","flat":true}').finish, 'glass');
   assert.equal(parseSettings(JSON.stringify(parseSettings('{"finish":"glass","gap":4}'))).finish, 'glass');
+});
+
+test('legacy Flat and icon settings migrate without changing other appearance preferences', () => {
+ for(const legacy of [{finish:'flat',showIcons:true},{flat:true,showIcons:true},{finish:'glass',flat:false,showIcons:true},{finish:'frosted',showIcons:false}]) {
+  const migrated=parseSettings(JSON.stringify({...legacy,darkMode:true,gap:4,width:420,motion:.5}));
+  assert.equal(migrated.finish,legacy.finish==='glass'?'glass':'frosted');
+  assert.equal('flat' in migrated,false); assert.equal('showIcons' in migrated,false);
+  assert.equal(migrated.darkMode,true); assert.equal(migrated.gap,4); assert.equal(migrated.width,420); assert.equal(migrated.motion,.5);
+  assert.deepEqual(parseSettings(JSON.stringify(migrated)),migrated);
+ }
 });

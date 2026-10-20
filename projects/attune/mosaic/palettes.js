@@ -6,5 +6,3 @@ export const PALETTES = Object.freeze({
 });
 export const paletteFor = settings => PALETTES[settings.darkMode ? 'dark' : 'light'];
 export const colorFor = (element, settings) => paletteFor(settings).colors[element];
-// Use the sheet background as contrasting negative space inside each symbol.
-export const inkFor = (element, settings) => !settings.darkMode && ['fire', 'water'].includes(element) ? PALETTES.light.background : PALETTES.dark.background;

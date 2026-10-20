@@ -20,7 +20,7 @@
 </head>
 <body>
   <main class="app">
-    <header class="workspace-header"><div class="workspace-title"><span class="brand">attune<span class="brand-dot" aria-hidden="true">✳</span></span><h1>Mosaic playground</h1></div><div class="header-actions"><span class="prototype">EXPERIMENTAL WORKSPACE</span><label class="theme-toggle"><input id="dark-mode" type="checkbox" role="switch" aria-label="Charcoal palette" aria-describedby="palette-name"><span class="switch-track" aria-hidden="true"></span><span id="palette-name">Warm white · bright colors</span></label></div></header>
+    <header class="workspace-header"><div class="workspace-title"><span class="brand">attune</span><h1>Mosaic playground</h1></div><div class="header-actions"><span class="prototype">EXPERIMENTAL WORKSPACE</span><label class="theme-toggle"><input id="dark-mode" type="checkbox" role="switch" aria-label="Charcoal palette" aria-describedby="palette-name"><span class="switch-track" aria-hidden="true"></span><span id="palette-name">Warm white · bright colors</span></label></div></header>
     <div class="workspace">
     <section class="canvas" aria-labelledby="week-title">
       <div class="mosaic-meta"><h2 id="week-title">Weekly mosaic</h2><span id="activity-count">0 activities</span></div>
@@ -28,10 +28,10 @@
       <div class="mosaic-stage">
       <div class="mosaic-frame">
         <svg id="mosaic" viewBox="0 0 400 400" role="group" aria-label="Weekly activity mosaic" aria-describedby="mosaic-hint"></svg>
-        <div id="empty" class="empty"><span class="empty-mark" aria-hidden="true">＋</span><h2>A week taking shape</h2><p>Add your first activity.<br>It starts with one whole piece.</p></div>
+        <div id="empty" class="empty"><h2>A week taking shape</h2><p>Add your first activity.<br>It starts with one whole piece.</p></div>
       </div>
       </div>
-      <div class="detail" id="detail" aria-live="polite"><span class="detail-marker" aria-hidden="true"></span><div><p id="detail-name">A space for your week</p><p id="detail-element">Your activities will appear here.</p></div><button id="deselect" class="close-button" aria-label="Close activity details" hidden>×</button></div>
+      <div class="detail" id="detail" aria-live="polite"><span class="detail-marker" aria-hidden="true"></span><div><p id="detail-name">A space for your week</p><p id="detail-element">Your activities will appear here.</p></div><button id="deselect" class="close-button" aria-label="Close activity details" hidden>Close</button></div>
       <p class="mosaic-hint" id="mosaic-hint">One piece, one activity. Size isn’t a measure of effort.</p>
     </section>
     <aside class="control-panel" aria-label="Mosaic controls">
@@ -42,14 +42,12 @@
         <label><input type="radio" name="element" value="earth"><span><i class="swatch earth"></i>Earth</span></label>
         <label><input type="radio" name="element" value="water"><span><i class="swatch water"></i>Water</span></label>
         <label><input type="radio" name="element" value="air"><span><i class="swatch air"></i>Air</span></label>
-      </div></fieldset><button class="add-button" type="submit"><span aria-hidden="true">＋</span> Add to mosaic</button>
+      </div></fieldset><button class="add-button" type="submit">Add to mosaic</button>
     </form></section>
-    <div class="undo-row"><button id="undo" class="quiet-button" type="button" disabled><span aria-hidden="true">↶</span> Undo</button><span>Restore the previous mosaic</span></div>
+    <div class="undo-row"><button id="undo" class="quiet-button" type="button" disabled>Undo</button><span>Restore the previous mosaic</span></div>
     <section class="demo-section" aria-labelledby="demo-title"><div class="demo-heading"><h2 id="demo-title">Load a demo</h2><span>ACTIVITIES</span></div><div class="demo-buttons"><button data-demo="1">Load 1</button><button data-demo="3">Load 3</button><button data-demo="8">Load 8</button><button data-demo="20">Load 20</button></div><p>Replaces this mosaic with sample activities.</p></section>
     <section class="visual-settings" aria-labelledby="visual-title"><h2 id="visual-title">Surface &amp; motion</h2>
-      <label class="theme-toggle"><input id="show-icons" type="checkbox" role="switch" checked><span class="switch-track" aria-hidden="true"></span><span>Show icons</span></label>
       <fieldset class="finish-picker"><legend>Finish</legend><div class="finish-options">
-        <label><input type="radio" name="finish" value="flat"><span>Flat</span></label>
         <label><input type="radio" name="finish" value="frosted" checked><span>Frosted</span></label>
         <label><input type="radio" name="finish" value="glass"><span>Glass</span></label>
       </div></fieldset>

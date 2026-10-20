@@ -1,8 +1,8 @@
 import { area } from './mosaic.js';
 
 export const VIEW_SIZE = 432;
-export const DEFAULT_SETTINGS = Object.freeze({ gap: 3.5, texture: 30, shadow: 1, motion: 1, finish: 'frosted', flat: false, darkMode: false, showIcons: true, width: 760 });
-export const finishOf = settings => settings.flat ? 'flat' : settings.finish || 'frosted';
+export const DEFAULT_SETTINGS = Object.freeze({ gap: 3.5, texture: 30, shadow: 1, motion: 1, finish: 'frosted', darkMode: false, width: 760 });
+export const finishOf = settings => settings.finish === 'glass' ? 'glass' : 'frosted';
 export const VISUAL_KEY = 'attune.mosaic-appearance.v2';
 export const pointsString = points => points.map(p => p.join(',')).join(' ');
 const cross = (a, b, p) => (b[0] - a[0]) * (p[1] - a[1]) - (b[1] - a[1]) * (p[0] - a[0]);
@@ -104,10 +104,9 @@ export function parseSettings(raw) {
   const ranges = { gap: [1, 8], texture: [0, 100], shadow: [0, 2], motion: [0, 2], width: [350, 1100] };
   const result = { ...DEFAULT_SETTINGS };
   for (const [key, [low, high]] of Object.entries(ranges)) if (Number.isFinite(value?.[key])) result[key] = Math.max(low, Math.min(high, value[key]));
-  result.finish = ['flat', 'frosted', 'glass'].includes(value?.finish) ? value.finish : value?.flat === true ? 'flat' : 'frosted';
-  result.flat = result.finish === 'flat';
+  // Legacy Flat settings become Frosted; obsolete icon and flat flags are dropped.
+  result.finish = finishOf(value || {});
   if (typeof value?.darkMode === 'boolean') result.darkMode = value.darkMode;
-  if (typeof value?.showIcons === 'boolean') result.showIcons = value.showIcons;
   return result;
 }
 

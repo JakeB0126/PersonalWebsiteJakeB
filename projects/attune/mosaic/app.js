@@ -1,7 +1,6 @@
 import { ELEMENTS, STORAGE_KEY, newDocument, addToDocument, undoDocument, demoDocument, parseDocument } from './mosaic.js';
 import { DEFAULT_SETTINGS, VISUAL_KEY, parseSettings } from './appearance.js';
 import { MosaicRenderer } from './renderer.js';
-import { createSymbol } from './symbols.js';
 import { paletteFor } from './palettes.js';
 const $ = selector => document.querySelector(selector);
 let doc = newDocument(), selectedId = null, saveError = false;
@@ -62,7 +61,6 @@ render();
 function syncVisualControls() {
   $('#dark-mode').checked = settings.darkMode;
   $('#palette-name').textContent = settings.darkMode ? 'Charcoal · soft colors' : 'Warm white · bright colors';
-  $('#show-icons').checked = settings.showIcons;
   for (const key of ['gap', 'texture', 'shadow', 'motion', 'width']) {
     $(`[data-setting="${key}"]`).value = settings[key];
     const output = $(`#${key}-value`);
@@ -70,7 +68,6 @@ function syncVisualControls() {
   }
   document.querySelectorAll('[name="finish"]').forEach(input => { input.checked = input.value === settings.finish; });
   $('[data-setting="texture"]').disabled = settings.finish !== 'frosted';
-  $('[data-setting="shadow"]').disabled = settings.finish === 'flat';
 }
 function applyVisualSettings() {
   syncVisualControls(); $('.mosaic-frame').style.setProperty('--preview-width', `${settings.width}px`);
@@ -84,26 +81,14 @@ function applyTheme() {
   document.documentElement.dataset.theme = settings.darkMode ? 'dark' : 'light';
   $('meta[name="theme-color"]').content = paletteFor(settings).background;
 }
-$('#show-icons').addEventListener('change', event => {
-  settings = { ...settings, showIcons: event.target.checked };
-  applyVisualSettings();
-});
 $('#dark-mode').addEventListener('change', event => {
   settings = { ...settings, darkMode: event.target.checked };
   applyTheme(); applyVisualSettings();
 });
 document.querySelectorAll('[data-setting]').forEach(input => input.addEventListener('input', () => { settings = { ...settings, [input.dataset.setting]: Number(input.value) }; applyVisualSettings(); }));
-document.querySelectorAll('[name="finish"]').forEach(input => input.addEventListener('change', () => { if (input.checked) { settings = { ...settings, finish: input.value, flat: input.value === 'flat' }; applyVisualSettings(); } }));
+document.querySelectorAll('[name="finish"]').forEach(input => input.addEventListener('change', () => { if (input.checked) { settings = { ...settings, finish: input.value }; applyVisualSettings(); } }));
 $('#fit-preview').addEventListener('click', () => { settings = { ...settings, width: Math.min(1100, Math.max(350, Math.round($('.mosaic-stage').clientWidth))) }; applyVisualSettings(); });
-syncVisualControls();
-
-// The legend uses the same paths as the tile glyphs.
-document.querySelectorAll('.legend .swatch').forEach(swatch => {
-  const element = Object.keys(ELEMENTS).find(key => swatch.classList.contains(key));
-  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.setAttribute('viewBox', '0 0 24 24'); svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('class', 'legend-symbol');
-  svg.append(createSymbol(element, 'currentColor')); swatch.after(svg);
-});
+syncVisualControls(); saveVisualSettings();
 
 // Optional page-scoped tools use the same immutable actions as the visible UI.
 if (document.modelContext?.registerTool) {

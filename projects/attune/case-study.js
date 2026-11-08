@@ -31,6 +31,6 @@ const mosaicFrame = document.querySelector('.mosaic-embed');
 window.addEventListener('message', event => {
   if (!mosaicFrame || event.source !== mosaicFrame.contentWindow || event.origin !== window.location.origin) return;
   if (event.data?.type !== 'attune:mosaic-height' || !Number.isFinite(event.data.height)) return;
-  const height = Math.ceil(Math.max(400, Math.min(2400, event.data.height)));
+  const height = Math.ceil(Math.max(400, Math.min(2400, event.data.height))) + 2;
   if (Math.abs(mosaicFrame.getBoundingClientRect().height - height) > 2) mosaicFrame.style.height = `${height}px`;
 });

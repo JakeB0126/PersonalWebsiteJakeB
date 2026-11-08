@@ -1,8 +1,5 @@
-// Exact dominant RGB colors sampled from the supplied, unmodified symbol sheets.
-// Sources: ../assets/symbols-warm.png and ../assets/symbols-charcoal.png.
-export const PALETTES = Object.freeze({
-  light: Object.freeze({ background: '#FFFCF0', colors: Object.freeze({ fire: '#D91816', earth: '#749020', water: '#0079C7', air: '#DDA801' }) }),
-  dark: Object.freeze({ background: '#262626', colors: Object.freeze({ fire: '#D36341', earth: '#8BA74B', water: '#439C96', air: '#E9DF6F' }) }),
-});
+// Final Attune Colors variables: shared element primitives in Light and Dark modes.
+const colors = Object.freeze({ fire: '#D8775A', earth: '#9EBD55', water: '#4EB5AF', air: '#E9D97A' });
+export const PALETTES = Object.freeze({ light: Object.freeze({ background: '#FFFCF0', colors }), dark: Object.freeze({ background: '#262626', colors }) });
 export const paletteFor = settings => PALETTES[settings.darkMode ? 'dark' : 'light'];
 export const colorFor = (element, settings) => paletteFor(settings).colors[element];

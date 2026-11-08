@@ -152,7 +152,7 @@ test('frosting blends from the parent during splitting and survives reload and u
   assert.notEqual(children[0].grain, children[1].grain);
   for (const tile of h.renderer.tiles.values()) {
     assert.notEqual(tile.visual.querySelector('.edge-glint').getAttribute('stroke'), '#FFFFFF');
-    assert.equal(tile.visual.querySelector('.tile-surface').getAttribute('fill'), '#D91816');
+    assert.equal(tile.visual.querySelector('.tile-surface').getAttribute('fill'), '#D8775A');
   }
   h.renderer.render(first.current.pieces, { before: next.current.pieces, animate: true }); h.finish();
   assert.deepEqual(frostingValues(h.renderer.tiles.get(1)), parent);

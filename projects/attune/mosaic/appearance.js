@@ -1,7 +1,7 @@
 import { area } from './mosaic.js';
 
 export const VIEW_SIZE = 432;
-export const DEFAULT_SETTINGS = Object.freeze({ gap: 3.5, texture: 30, shadow: 1, motion: 1, finish: 'frosted', darkMode: false, width: 760 });
+export const DEFAULT_SETTINGS = Object.freeze({ gap: 3, texture: 30, shadow: 1, motion: 1, finish: 'frosted', darkMode: false, width: 760 });
 export const finishOf = settings => settings.finish === 'glass' ? 'glass' : 'frosted';
 export const VISUAL_KEY = 'attune.mosaic-appearance.v2';
 export const pointsString = points => points.map(p => p.join(',')).join(' ');

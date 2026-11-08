@@ -5,13 +5,11 @@ import { paletteFor } from './palettes.js';
 const $ = selector => document.querySelector(selector);
 let doc = newDocument(), selectedId = null, saveError = false;
 let settings = { ...DEFAULT_SETTINGS };
-try { settings = parseSettings(localStorage.getItem(VISUAL_KEY)); } catch {}
+try { settings.darkMode = parseSettings(localStorage.getItem(VISUAL_KEY)).darkMode; } catch {}
+// Fixed approved preset ignores all legacy appearance overrides, preserving activities.
 applyTheme();
 $('.mosaic-frame').style.setProperty('--preview-width', `${settings.width}px`);
-const renderer = new MosaicRenderer($('#mosaic'), settings, id => select(id), ({ width, gap }) => {
-  $('#preview-value').textContent = `${Math.round(width)} px`;
-  $('#gap-note').textContent = gap < settings.gap - .05 ? `Gap limited to ${gap.toFixed(1)} px to protect small tiles.` : 'Appearance only. Your arrangement stays the same.';
-});
+const renderer = new MosaicRenderer($('#mosaic'), settings, id => select(id), () => {});
 try { const saved = localStorage.getItem(STORAGE_KEY); if (saved) doc = parseDocument(saved); }
 catch { showError('Your saved mosaic couldn’t be loaded. You can start a new one below.'); }
 function showError(message) { $('#error').textContent = message; $('#error').hidden = false; }
@@ -27,6 +25,9 @@ function renderDetails() {
   $('#detail-element').textContent = selected ? `${ELEMENTS[selected.activity.element].label} · ${ELEMENTS[selected.activity.element].meaning}` : doc.current.pieces.length ? 'Press a tile to feel it. Click to see its activity.' : 'Your activities will appear here.';
   $('.detail-marker').style.background = selected ? `var(--${selected.activity.element})` : 'var(--background)';
   $('#deselect').hidden = !selected;
+  $('#detail-reflection').hidden = !selected?.activity.reflection;
+  $('#detail-reflection').textContent = selected?.activity.reflection || '';
+  if (selected?.activity.occurredAt) $('#detail-element').textContent += ` · ${new Date(selected.activity.occurredAt).toLocaleString([], {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}`;
 }
 function render(transition = {}) {
   renderer.render(doc.current.pieces, transition);
@@ -40,13 +41,39 @@ function commit(nextDoc, message, selected = null, animate = true) {
   const before = doc.current.pieces;
   doc = nextDoc; selectedId = selected; $('#error').hidden = true; save(); render({ before, animate }); $('#announcement').textContent = message;
 }
-$('#activity-form').addEventListener('submit', event => {
-  event.preventDefault();
-  const input = $('#activity-name'), name = input.value.trim(), element = new FormData(event.currentTarget).get('element');
-  if (!name) { input.setCustomValidity('Give this activity a name.'); input.reportValidity(); return; }
-  try { const next = addToDocument(doc, name, element); commit(next, `${name} added. ${next.current.pieces.length} activities.`, next.current.nextId - 1); input.value = ''; }
-  catch (error) { showError(error.message); }
+let chosenElement = null;
+function localNow() { const d = new Date(); return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0,16); }
+function setStep(details) {
+  $('#choose-step').hidden = details; $('#details-step').hidden = !details;
+  $('#activity-name').required = details; $('#activity-date').required = details;
+  $('#cancel-log').hidden = !details && !chosenElement;
+}
+function resetDraft() { $('#activity-form').reset(); chosenElement = null; $('#activity-date').value = localNow(); $('#discard-prompt').hidden = true; $('.reflection').open = false; setStep(false); }
+document.querySelectorAll('[data-element]').forEach(button => button.addEventListener('click', () => {
+  chosenElement = button.dataset.element; $('#chosen-label').textContent = ELEMENTS[chosenElement].label;
+  $('#chosen-label').style.borderColor = `var(--${chosenElement})`; setStep(true); $('#activity-name').focus();
+}));
+$('#change-element').addEventListener('click', () => { setStep(false); $(`[data-element="${chosenElement}"]`).focus(); });
+$('#cancel-log').addEventListener('click', () => {
+  if ($('#activity-name').value.trim() || $('#activity-reflection').value.trim()) { $('#discard-prompt').hidden = false; $('#keep-draft').focus(); }
+  else { resetDraft(); $('[data-element]').focus(); }
 });
+$('#keep-draft').addEventListener('click', () => { $('#discard-prompt').hidden = true; $('#cancel-log').focus(); });
+$('#discard-draft').addEventListener('click', () => { resetDraft(); $('[data-element]').focus(); });
+$('#activity-form').addEventListener('submit', event => {
+  event.preventDefault(); const input = $('#activity-name'), name = input.value.trim();
+  if (!chosenElement) return;
+  if (!name) { input.setCustomValidity('Give this activity a name.'); input.reportValidity(); return; }
+  try {
+    const next = addToDocument(doc, name, chosenElement);
+    const activity = next.current.pieces.at(-1).activity;
+    activity.occurredAt = $('#activity-date').value;
+    activity.reflection = $('#activity-reflection').value.trim();
+    commit(next, `${name} added. ${next.current.pieces.length} activities.`, activity.id);
+    resetDraft(); $('[data-element]').focus();
+  } catch (error) { showError(error.message); }
+});
+resetDraft();
 $('#activity-name').addEventListener('input', event => event.target.setCustomValidity(''));
 $('#undo').addEventListener('click', () => { if (doc.history.length) commit(undoDocument(doc), 'Last activity undone. Previous mosaic restored.'); });
 $('#deselect').addEventListener('click', () => { const piece = $('#mosaic').querySelector(`[data-id="${selectedId}"]`); select(null); piece?.focus(); });
@@ -58,37 +85,13 @@ document.querySelectorAll('[data-demo]').forEach(button => button.addEventListen
 window.addEventListener('storage', event => { if (event.key === STORAGE_KEY && event.newValue) { try { doc = parseDocument(event.newValue); selectedId = null; render(); } catch { showError('A saved update could not be loaded.'); } } });
 render();
 
-function syncVisualControls() {
-  $('#dark-mode').checked = settings.darkMode;
-  $('#palette-name').textContent = settings.darkMode ? 'Charcoal · soft colors' : 'Warm white · bright colors';
-  for (const key of ['gap', 'texture', 'shadow', 'motion', 'width']) {
-    $(`[data-setting="${key}"]`).value = settings[key];
-    const output = $(`#${key}-value`);
-    if (output) output.textContent = key === 'gap' ? `${settings[key].toFixed(1)} px` : key === 'texture' ? `${settings[key]}%` : `${settings[key].toFixed(1)}×`;
-  }
-  document.querySelectorAll('[name="finish"]').forEach(input => { input.checked = input.value === settings.finish; });
-  $('[data-setting="texture"]').disabled = settings.finish !== 'frosted';
-}
-function applyVisualSettings() {
-  syncVisualControls(); $('.mosaic-frame').style.setProperty('--preview-width', `${settings.width}px`);
-  renderer.setSettings(settings);
-  saveVisualSettings();
-}
-function saveVisualSettings() {
-  try { localStorage.setItem(VISUAL_KEY, JSON.stringify(settings)); } catch { showError('These visual settings could not be saved by your browser.'); }
-}
-function applyTheme() {
-  document.documentElement.dataset.theme = settings.darkMode ? 'dark' : 'light';
-  $('meta[name="theme-color"]').content = paletteFor(settings).background;
-}
-$('#dark-mode').addEventListener('change', event => {
-  settings = { ...settings, darkMode: event.target.checked };
-  applyTheme(); applyVisualSettings();
-});
-document.querySelectorAll('[data-setting]').forEach(input => input.addEventListener('input', () => { settings = { ...settings, [input.dataset.setting]: Number(input.value) }; applyVisualSettings(); }));
-document.querySelectorAll('[name="finish"]').forEach(input => input.addEventListener('change', () => { if (input.checked) { settings = { ...settings, finish: input.value }; applyVisualSettings(); } }));
-$('#fit-preview').addEventListener('click', () => { settings = { ...settings, width: Math.min(1100, Math.max(350, Math.round($('.mosaic-stage').clientWidth))) }; applyVisualSettings(); });
-syncVisualControls(); saveVisualSettings();
+function syncVisualControls() { $('#dark-mode').checked = settings.darkMode; $('#palette-name').textContent = settings.darkMode ? 'Dark mode' : 'Light mode'; }
+function applyTheme() { document.documentElement.dataset.theme = settings.darkMode ? 'dark' : 'light'; $('meta[name="theme-color"]').content = paletteFor(settings).background; }
+$('#dark-mode').addEventListener('change', event => { settings.darkMode = event.target.checked; applyTheme(); syncVisualControls(); renderer.setSettings(settings); try { localStorage.setItem(VISUAL_KEY, JSON.stringify({darkMode:settings.darkMode})); } catch {} });
+syncVisualControls();
+// Send content height rather than tying the layout to iframe height (avoids resize loops).
+function reportHeight() { if (parent !== window) parent.postMessage({type:'attune:mosaic-height',height:Math.ceil($('.app').getBoundingClientRect().height)}, location.origin === 'null' ? '*' : location.origin); }
+new ResizeObserver(reportHeight).observe($('.app')); window.addEventListener('load', reportHeight);
 
 // Optional page-scoped tools use the same immutable actions as the visible UI.
 if (document.modelContext?.registerTool) {

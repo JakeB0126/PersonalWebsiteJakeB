@@ -83,7 +83,7 @@ test('press gesture cancels on scroll-sized movement, outside release, and point
 test('saved appearance settings are isolated and bounded', () => {
   assert.equal(parseSettings('{"gap":99,"width":12}').gap, 8);
   assert.equal(parseSettings('{"gap":99,"width":12}').width, 350);
-  assert.equal(parseSettings('bad data').gap, 3.5);
+  assert.equal(parseSettings('bad data').gap, 3);
   assert.equal(parseSettings('{"flat":true}').finish, 'frosted');
   assert.equal(parseSettings('{"flat":false,"texture":50}').finish, 'frosted');
   assert.equal(parseSettings('{"finish":"glass","flat":true}').finish, 'glass');

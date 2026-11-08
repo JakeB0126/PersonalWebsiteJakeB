@@ -24,3 +24,13 @@ if (typeof imageDialog.showModal === 'function') {
   });
   imageDialog.addEventListener('close', () => imageTrigger?.focus({ preventScroll: true }));
 }
+
+// Only the embedded same-origin study can resize its frame. The child reports its
+// content height, keeping mobile layouts in the page rather than nested scrolling.
+const mosaicFrame = document.querySelector('.mosaic-embed');
+window.addEventListener('message', event => {
+  if (!mosaicFrame || event.source !== mosaicFrame.contentWindow || event.origin !== window.location.origin) return;
+  if (event.data?.type !== 'attune:mosaic-height' || !Number.isFinite(event.data.height)) return;
+  const height = Math.ceil(Math.max(400, Math.min(2400, event.data.height)));
+  if (Math.abs(mosaicFrame.getBoundingClientRect().height - height) > 2) mosaicFrame.style.height = `${height}px`;
+});
